@@ -1,3 +1,4 @@
+require_relative '../base_line'
 require_relative 'triangle_factory'
 
 module GridGenerator
@@ -27,34 +28,34 @@ module GridGenerator
     
       def vertical_line_points
         Array.new((2*size)-1) do |i|
-          { 
-            "x1" => x+((i+1)-size).abs*units, 
-            "y1" => y+(i+1)*units,  
-            "x2" => x+((((i+1)-size).abs*-1)+2*size)*units,
-            "y2" => y+(i+1)*units 
-          }
+          GridGenerator::BaseLine.new( 
+            x1: x+((i+1)-size).abs*units, 
+            y1: y+(i+1)*units,  
+            x2: x+((((i+1)-size).abs*-1)+2*size)*units,
+            y2: y+(i+1)*units 
+          ) 
         end
       end
     
       def diagonal_down_line_points
         Array.new(size-1) do |i|
-          {
-            "x1" => x+((i-1).abs + 1)*units,
-            "y1" => y+(i+1)*units,
-            "x2" => x+((i-1).abs + 1 + size)*units,
-            "y2" => y+(i+1+size)*units
-          }
+          GridGenerator::BaseLine.new( 
+            x1: x+((i-1).abs + 1)*units,
+            y1: y+(i+1)*units,
+            x2: x+((i-1).abs + 1 + size)*units,
+            y2: y+(i+1+size)*units
+          ) 
         end
       end
     
       def diagonal_up_line_points
         Array.new(size-1) do |i|
-          {
-            "x1" => x+(i+1)*units,
-            "y1" => y+(i+1+size)*units,
-            "x2" => x+(i+1+size)*units,
-            "y2" => y+(i+1)*units
-          }
+          GridGenerator::BaseLine.new( 
+            x1: x+(i+1)*units,
+            y1: y+(i+1+size)*units,
+            x2: x+(i+1+size)*units,
+            y2: y+(i+1)*units
+          ) 
         end
       end
     

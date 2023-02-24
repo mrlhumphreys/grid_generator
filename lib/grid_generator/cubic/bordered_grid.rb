@@ -1,4 +1,5 @@
 require_relative '../face_parser'
+require_relative '../base_element'
 require_relative 'facing_square_factory'
 
 module GridGenerator
@@ -73,23 +74,23 @@ module GridGenerator
   
       def rows
         Array.new(height) do |i|
-          {
-            "x1" => x,
-            "y1" => unit_y(i+1),
-            "x2" => max_x,
-            "y2" => unit_y(i+1)
-          }
+          GridGenerator::BaseLine.new(
+            x1: x,
+            y1: unit_y(i+1),
+            x2: max_x,
+            y2: unit_y(i+1)
+          ) 
         end
       end
   
       def columns 
         Array.new(width) do |i|
-          {
-            "x1" => unit_x(i+1),
-            "y1" => y,
-            "x2" => unit_x(i+1),
-            "y2" => max_y
-          }
+          GridGenerator::BaseLine.new(
+            x1: unit_x(i+1),
+            y1: y,
+            x2: unit_x(i+1),
+            y2: max_y
+          ) 
         end
       end
   

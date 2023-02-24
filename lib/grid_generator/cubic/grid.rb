@@ -1,5 +1,6 @@
 require 'matrix'
 require_relative '../face_parser'
+require_relative '../base_line'
 
 module GridGenerator
   module Cubic
@@ -80,23 +81,23 @@ module GridGenerator
   
       def rows
         Array.new(height) do |i|
-          {
-            "x1" => row_line_start(i+1)[0,0],
-            "y1" => row_line_start(i+1)[1,0],
-            "x2" => row_line_end(i+1)[0,0],
-            "y2" => row_line_end(i+1)[1,0]
-          }
+          GridGenerator::BaseLine.new(
+            x1: row_line_start(i+1)[0,0],
+            y1: row_line_start(i+1)[1,0],
+            x2: row_line_end(i+1)[0,0],
+            y2: row_line_end(i+1)[1,0]
+          )
         end
       end
   
       def columns 
         Array.new(width) do |i|
-          {
-            "x1" => column_line_start(i+1)[0,0],
-            "y1" => column_line_start(i+1)[1,0],
-            "x2" => column_line_end(i+1)[0,0],
-            "y2" => column_line_end(i+1)[1,0]
-          }
+          GridGenerator::BaseLine.new(
+            x1: column_line_start(i+1)[0,0],
+            y1: column_line_start(i+1)[1,0],
+            x2: column_line_end(i+1)[0,0],
+            y2: column_line_end(i+1)[1,0]
+          )
         end
       end
   

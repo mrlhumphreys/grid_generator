@@ -15,10 +15,10 @@ describe GridGenerator::Cubic::FrontGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::FrontGrid.new(x: 20, y: 50, units: 20, squares: "y,y,y,y,y\\n-,-,-,-,-\\n-,-,-,-,-\\ny,y,y,y,y")
       expected = [
-        { "x1" => 20, "y1" => 70, "x2" => 120, "y2" => 120 },
-        { "x1" => 20, "y1" => 90, "x2" => 120, "y2" => 140 },
-        { "x1" => 20, "y1" => 110, "x2" => 120, "y2" => 160 },
-        { "x1" => 20, "y1" => 130, "x2" => 120, "y2" => 180 }
+        GridGenerator::BaseLine.new(x1: 20, y1: 70, x2: 120, y2: 120),
+        GridGenerator::BaseLine.new(x1: 20, y1: 90, x2: 120, y2: 140),
+        GridGenerator::BaseLine.new(x1: 20, y1: 110, x2: 120, y2: 160),
+        GridGenerator::BaseLine.new(x1: 20, y1: 130, x2: 120, y2: 180) 
       ] 
       assert_equal expected, grid.rows
     end
@@ -28,11 +28,11 @@ describe GridGenerator::Cubic::FrontGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::FrontGrid.new(x: 20, y: 50, units: 20, squares: "y,y,y,y,y\\n-,-,-,-,-\\n-,-,-,-,-\\ny,y,y,y,y") 
       expected = [
-        { "x1" => 40, "y1" => 60, "x2" => 40, "y2" => 140 },
-        { "x1" => 60, "y1" => 70, "x2" => 60, "y2" => 150 },
-        { "x1" => 80, "y1" => 80, "x2" => 80, "y2" => 160 },
-        { "x1" => 100, "y1" => 90, "x2" => 100, "y2" => 170 },
-        { "x1" => 120, "y1" => 100, "x2" => 120, "y2" => 180 }
+        GridGenerator::BaseLine.new(x1: 40, y1: 60, x2: 40, y2: 140),
+        GridGenerator::BaseLine.new(x1: 60, y1: 70, x2: 60, y2: 150),
+        GridGenerator::BaseLine.new(x1: 80, y1: 80, x2: 80, y2: 160),
+        GridGenerator::BaseLine.new(x1: 100, y1: 90, x2: 100, y2: 170),
+        GridGenerator::BaseLine.new(x1: 120, y1: 100, x2: 120, y2: 180)
       ] 
       assert_equal expected, grid.columns
     end

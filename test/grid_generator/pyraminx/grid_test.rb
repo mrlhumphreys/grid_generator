@@ -60,11 +60,11 @@ describe GridGenerator::Pyraminx::Grid do
     it 'should generate' do
       grid = GridGenerator::Pyraminx::Grid.new(x: 20, y: 20, size: 3, units: 25, elements: TEST_ELEMENTS)
       expected = [
-        { "x1" => 70, "y1" => 45, "x2" => 120, "y2" => 45 },
-        { "x1" => 45, "y1" => 70, "x2" => 145, "y2" => 70 },
-        { "x1" => 20, "y1" => 95, "x2" => 170, "y2" => 95 },
-        { "x1" => 45, "y1" => 120, "x2" => 145, "y2" => 120 },
-        { "x1" => 70, "y1" => 145, "x2" => 120, "y2" => 145 }
+        GridGenerator::BaseLine.new(x1: 70, y1: 45, x2: 120, y2: 45),
+        GridGenerator::BaseLine.new(x1: 45, y1: 70, x2: 145, y2: 70),
+        GridGenerator::BaseLine.new(x1: 20, y1: 95, x2: 170, y2: 95),
+        GridGenerator::BaseLine.new(x1: 45, y1: 120, x2: 145, y2: 120),
+        GridGenerator::BaseLine.new(x1: 70, y1: 145, x2: 120, y2: 145)
       ]
       assert_equal expected, grid.vertical_line_points
     end
@@ -74,8 +74,8 @@ describe GridGenerator::Pyraminx::Grid do
     it 'should generate' do
       grid = GridGenerator::Pyraminx::Grid.new(x: 20, y: 20, size: 3, units: 25, elements: TEST_ELEMENTS)
       expected = [
-        { "x1" => 70, "y1" => 45, "x2" => 145, "y2" => 120 },
-        { "x1" => 45, "y1" => 70, "x2" => 120, "y2" => 145 }
+        GridGenerator::BaseLine.new(x1: 70, y1: 45, x2: 145, y2: 120),
+        GridGenerator::BaseLine.new(x1: 45, y1: 70, x2: 120, y2: 145)
       ]
       assert_equal expected, grid.diagonal_down_line_points
     end
@@ -85,8 +85,8 @@ describe GridGenerator::Pyraminx::Grid do
     it 'should generate' do
       grid = GridGenerator::Pyraminx::Grid.new(x: 20, y: 20, size: 3, units: 25, elements: TEST_ELEMENTS)
       expected = [
-        { "x1" => 45, "y1" => 120, "x2" => 120, "y2" => 45 },
-        { "x1" => 70, "y1" => 145, "x2" => 145, "y2" => 70 }
+        GridGenerator::BaseLine.new(x1: 45, y1: 120, x2: 120, y2: 45),
+        GridGenerator::BaseLine.new(x1: 70, y1: 145, x2: 145, y2: 70)
       ]
       assert_equal expected, grid.diagonal_up_line_points
     end

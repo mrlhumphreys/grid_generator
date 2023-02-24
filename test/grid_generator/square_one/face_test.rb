@@ -59,7 +59,7 @@ describe GridGenerator::SquareOne::Face do
   describe '#axis' do
     it 'should generate' do
       face = GridGenerator::SquareOne::Face.new(x: 20, y: 160, units: 40, elements: "e0F,c0y,e3F,c3y,e6F,c6y,e9F,c9W", axis_direction: :back)
-      expected = { x1: 63.92304845413264, y1: 160, x2: 96.07695154586736, y2: 280 } 
+      expected = GridGenerator::BaseLine.new(x1: 63.92304845413264, y1: 160, x2: 96.07695154586736, y2: 280)
       assert_equal expected, face.axis
     end
   end

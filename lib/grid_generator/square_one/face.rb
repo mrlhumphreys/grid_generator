@@ -1,3 +1,4 @@
+require_relative '../base_line'
 require_relative '../square_one_face_parser'
 require_relative 'element_factory'
 
@@ -41,21 +42,21 @@ module GridGenerator
       end
   
       def forward_axis
-        {
+        GridGenerator::BaseLine.new( 
           x1: x+half_face_size+half_edge_width,
           y1: y,
           x2: x+half_face_size-half_edge_width,
           y2: y+face_size
-        }
+        ) 
       end
   
       def back_axis
-        {
+        GridGenerator::BaseLine.new( 
           x1: x+half_face_size-half_edge_width,
           y1: y,
           x2: x+half_face_size+half_edge_width,
           y2: y+face_size
-        }
+        ) 
       end
   
       def element_shapes

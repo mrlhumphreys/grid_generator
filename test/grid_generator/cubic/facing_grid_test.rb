@@ -15,8 +15,8 @@ describe GridGenerator::Cubic::FacingGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::FacingGrid.new(x: 20, y: 20, units: 30, squares: "Y,Y\\nY,Y")
       expected = [
-        { "x1" => 20, "y1" => 50, "x2" => 80, "y2" => 50 },
-        { "x1" => 20, "y1" => 80, "x2" => 80, "y2" => 80 }
+        GridGenerator::BaseLine.new(x1: 20, y1: 50, x2: 80, y2: 50),
+        GridGenerator::BaseLine.new(x1: 20, y1: 80, x2: 80, y2: 80)
       ] 
       assert_equal expected, grid.rows
     end
@@ -26,8 +26,8 @@ describe GridGenerator::Cubic::FacingGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::FacingGrid.new(x: 20, y: 20, units: 30, squares: "Y,Y\\nY,Y")
       expected = [
-        { "x1" => 50, "y1" => 20, "x2" => 50, "y2" => 80 },
-        { "x1" => 80, "y1" => 20, "x2" => 80, "y2" => 80 }
+        GridGenerator::BaseLine.new(x1: 50, y1: 20, x2: 50, y2: 80),
+        GridGenerator::BaseLine.new(x1: 80, y1: 20, x2: 80, y2: 80)
       ] 
       assert_equal expected, grid.columns
     end

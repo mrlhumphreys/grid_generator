@@ -1,3 +1,4 @@
+require_relative '../base_element'
 require_relative 'skewb_grid'
 require_relative 'top_element_factory'
 
@@ -19,23 +20,23 @@ module GridGenerator
   
       def rows
         Array.new(side_size) do |i|
-          { 
+          GridGenerator::BaseLine.new( 
             x1: x + 2*units,
             y1: y + (2*i+1)*units,
             x2: x + 6*units,
             y2: y + (2*i+1)*units
-          }
+          ) 
         end
       end
   
       def columns
         Array.new(side_size) do |i|
-          { 
+          GridGenerator::BaseLine.new( 
             x1: x + (4*i+2)*units,
             y1: y + units,
             x2: x + (4*i+2)*units,
             y2: y + 3*units
-          }
+          ) 
         end
       end
     end

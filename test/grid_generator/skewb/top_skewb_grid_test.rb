@@ -15,8 +15,8 @@ describe GridGenerator::Skewb::TopSkewbGrid do
     it 'should generate' do
       grid = GridGenerator::Skewb::TopSkewbGrid.new(x: 20, y: 20, units: 20, elements: "w,-,w\\n-,w,-\\nw,-,B")
       expected = [
-        { x1: 60, y1: 40, x2: 140, y2: 40 },
-        { x1: 60, y1: 80, x2: 140, y2: 80 }
+        GridGenerator::BaseLine.new(x1: 60, y1: 40, x2: 140, y2: 40),
+        GridGenerator::BaseLine.new(x1: 60, y1: 80, x2: 140, y2: 80)
       ] 
       assert_equal expected, grid.rows
     end
@@ -26,8 +26,8 @@ describe GridGenerator::Skewb::TopSkewbGrid do
     it 'should generate' do
       grid = GridGenerator::Skewb::TopSkewbGrid.new(x: 20, y: 20, units: 20, elements: "w,-,w\\n-,w,-\\nw,-,B")
       expected = [
-        { x1: 60, y1: 40, x2: 60, y2: 80 },
-        { x1: 140, y1: 40, x2: 140, y2: 80 }
+        GridGenerator::BaseLine.new(x1: 60, y1: 40, x2: 60, y2: 80),
+        GridGenerator::BaseLine.new(x1: 140, y1: 40, x2: 140, y2: 80)
       ] 
       assert_equal expected, grid.columns
     end
