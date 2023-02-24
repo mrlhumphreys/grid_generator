@@ -1,4 +1,5 @@
 require 'matrix'
+
 module GridGenerator
   module Megaminx
     module Common

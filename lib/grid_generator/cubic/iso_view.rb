@@ -1,3 +1,7 @@
+require_relative 'top_grid'
+require_relative 'front_grid'
+require_relative 'right_grid'
+
 module GridGenerator
   module Cubic
     class IsoView

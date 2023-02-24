@@ -1,5 +1,5 @@
-require './lib/grid_generator/face_parser'
-require './lib/grid_generator/cubic/facing_square_factory'
+require_relative '../face_parser'
+require_relative 'facing_square_factory'
 
 module GridGenerator
   module Cubic

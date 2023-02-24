@@ -1,4 +1,4 @@
-require './lib/grid_generator/base_element'
+require_relative '../base_element'
 
 module GridGenerator
   module Pyraminx

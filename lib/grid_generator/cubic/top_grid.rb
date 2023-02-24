@@ -1,4 +1,4 @@
-require './lib/grid_generator/cubic/grid'
+require_relative 'grid'
 
 module GridGenerator
   module Cubic

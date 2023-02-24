@@ -1,6 +1,6 @@
-require './lib/grid_generator/face_parser'
-require './lib/grid_generator/megaminx/common'
-require './lib/grid_generator/megaminx/element_factory'
+require_relative '../face_parser'
+require_relative 'common'
+require_relative 'element_factory'
 
 module GridGenerator
   module Megaminx

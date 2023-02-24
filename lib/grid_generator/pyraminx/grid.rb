@@ -1,4 +1,4 @@
-require './lib/grid_generator/pyraminx/triangle_factory'
+require_relative 'triangle_factory'
 
 module GridGenerator
   module Pyraminx

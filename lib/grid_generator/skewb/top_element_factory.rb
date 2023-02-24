@@ -1,3 +1,5 @@
+require_relative '../base_element'
+
 module GridGenerator
   module Skewb
     class TopElementFactory

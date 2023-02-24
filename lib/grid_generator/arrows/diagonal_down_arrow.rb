@@ -1,4 +1,4 @@
-require './lib/grid_generator/arrows/arrow.rb'
+require_relative 'arrow'
 
 module GridGenerator
   module Arrows

@@ -1,5 +1,5 @@
-require './lib/grid_generator/base_element'
-require './lib/grid_generator/megaminx/common'
+require_relative '../base_element'
+require_relative 'common'
 
 module GridGenerator
   module Megaminx

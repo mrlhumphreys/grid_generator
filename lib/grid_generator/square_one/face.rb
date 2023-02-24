@@ -1,5 +1,5 @@
-require './lib/grid_generator/square_one_face_parser'
-require './lib/grid_generator/square_one/element_factory'
+require_relative '../square_one_face_parser'
+require_relative 'element_factory'
 
 module GridGenerator
   module SquareOne

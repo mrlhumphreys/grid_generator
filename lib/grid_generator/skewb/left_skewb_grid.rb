@@ -1,5 +1,5 @@
-require './lib/grid_generator/skewb/skewb_grid.rb'
-require './lib/grid_generator/skewb/left_element_factory.rb'
+require_relative 'skewb_grid'
+require_relative 'left_element_factory'
 
 module GridGenerator
   module Skewb

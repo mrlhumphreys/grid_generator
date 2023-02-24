@@ -1,5 +1,5 @@
 require 'matrix'
-require './lib/grid_generator/face_parser'
+require_relative '../face_parser'
 
 module GridGenerator
   module Cubic
