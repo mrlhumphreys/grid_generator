@@ -37,10 +37,30 @@ describe GridGenerator::Cubic::FacingGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::FacingGrid.new(x: 20, y: 20, units: 30, squares: "Y,Y\\nY,Y")
       expected = [
-        GridGenerator::BaseElement.new(points: [[20, 20], [50, 20], [50, 50], [20, 50]], colour: "#ffff00", opacity: 1),
-        GridGenerator::BaseElement.new(points: [[50, 20], [80, 20], [80, 50], [50, 50]], colour: "#ffff00", opacity: 1),
-        GridGenerator::BaseElement.new(points: [[20, 50], [50, 50], [50, 80], [20, 80]], colour: "#ffff00", opacity: 1),
-        GridGenerator::BaseElement.new(points: [[50, 50], [80, 50], [80, 80], [50, 80]], colour: "#ffff00", opacity: 1)
+        GridGenerator::BaseElement.new(points: [
+          Matrix.column_vector([20, 20]), 
+          Matrix.column_vector([50, 20]), 
+          Matrix.column_vector([50, 50]), 
+          Matrix.column_vector([20, 50])
+        ], colour: "#ffff00", opacity: 1),
+        GridGenerator::BaseElement.new(points: [
+          Matrix.column_vector([50, 20]), 
+          Matrix.column_vector([80, 20]), 
+          Matrix.column_vector([80, 50]), 
+          Matrix.column_vector([50, 50])
+        ], colour: "#ffff00", opacity: 1),
+        GridGenerator::BaseElement.new(points: [
+          Matrix.column_vector([20, 50]), 
+          Matrix.column_vector([50, 50]), 
+          Matrix.column_vector([50, 80]), 
+          Matrix.column_vector([20, 80])
+        ], colour: "#ffff00", opacity: 1),
+        GridGenerator::BaseElement.new(points: [
+          Matrix.column_vector([50, 50]), 
+          Matrix.column_vector([80, 50]), 
+          Matrix.column_vector([80, 80]), 
+          Matrix.column_vector([50, 80])
+        ], colour: "#ffff00", opacity: 1)
       ] 
       assert_equal expected, grid.element_shapes
     end

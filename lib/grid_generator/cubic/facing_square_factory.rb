@@ -21,10 +21,10 @@ module GridGenerator
 
       def points
         [
-          [ x, y ],
-          [ max_x, y ],
-          [ max_x, max_y ],
-          [ x, max_y ]
+          Matrix.column_vector([ x, y ]),
+          Matrix.column_vector([ max_x, y ]),
+          Matrix.column_vector([ max_x, max_y ]),
+          Matrix.column_vector([ x, max_y ])
         ]
       end
 
