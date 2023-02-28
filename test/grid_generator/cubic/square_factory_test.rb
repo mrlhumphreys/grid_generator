@@ -15,7 +15,6 @@ describe GridGenerator::Cubic::SquareFactory do
       factory = GridGenerator::Cubic::SquareFactory.new(
         x: 60, 
         y: 20, 
-        units: units, 
         width_unit: width_unit,
         height_unit: height_unit,
         offset_unit: offset_unit,
@@ -43,7 +42,6 @@ describe GridGenerator::Cubic::SquareFactory do
       factory = GridGenerator::Cubic::SquareFactory.new(
         x: 60, 
         y: 20, 
-        units: units, 
         width_unit: width_unit, 
         height_unit: height_unit, 
         offset_unit: offset_unit, 
@@ -70,7 +68,6 @@ describe GridGenerator::Cubic::SquareFactory do
       factory = GridGenerator::Cubic::SquareFactory.new(
         x: 60, 
         y: 20, 
-        units: units, 
         width_unit: width_unit,
         height_unit: height_unit,
         offset_unit: offset_unit,

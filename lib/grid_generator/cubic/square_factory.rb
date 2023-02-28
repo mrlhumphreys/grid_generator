@@ -1,17 +1,18 @@
 require_relative '../base_element'
+require_relative 'units_factory'
 
 module GridGenerator
   module Cubic
     class SquareFactory
-      def initialize(x:, y:, units:, width_unit:, height_unit:, offset_unit:, colour:, opacity:)
+      def initialize(x:, y:, width_unit:, height_unit:, offset_unit:, colour:, opacity:)
         @x, @y = x, y
-        @units = units
-        @width_unit, @height_unit = width_unit, height_unit
+        @width_unit = width_unit
+        @height_unit = height_unit
         @offset_unit = offset_unit
         @colour, @opacity = colour, opacity 
       end
   
-      attr_reader :x, :y, :units, :width_unit, :height_unit, :offset_unit, :colour, :opacity
+      attr_reader :x, :y, :width_unit, :height_unit, :offset_unit, :colour, :opacity
 
       def top_left
         Matrix.column_vector([x, y]) + offset_unit

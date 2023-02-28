@@ -25,18 +25,6 @@ module GridGenerator
     Cubic::IsoView.new(**args)
   end
 
-  def self.top_grid(args)
-    Cubic::TopGrid.new(**args)
-  end
-
-  def self.front_grid(args)
-    Cubic::FrontGrid.new(**args)
-  end
-
-  def self.right_grid(args)
-    Cubic::RightGrid.new(**args)
-  end
-
   def self.facing_grid(args)
     Cubic::FacingGrid.new(**args)
   end
@@ -45,19 +33,20 @@ module GridGenerator
     Cubic::BorderedGrid.new(**args)
   end
 
-  def self.top_square(args)
-    #??
-    Cubic::TopSquareFactory.new(**args).build
-  end
-
-  def self.front_square(args)
-    #??
-    Cubic::FrontSquareFactory.new(**args).build
-  end
-
-  def self.right_square(args)
-    #??
-    Cubic::RightSquareFactory.new(**args).build
+  def self.square(args)
+    width_unit = GridGenerator::Cubic::UnitsFactory.new(side: args[:side], type: :width, units: args[:units]).build 
+    height_unit = GridGenerator::Cubic::UnitsFactory.new(side: args[:side], type: :height, units: args[:units]).build 
+    offset_unit = GridGenerator::Cubic::UnitsFactory.new(side: args[:side], type: :offset, units: args[:units]).build 
+    
+    GridGenerator::Cubic::SquareFactory.new(
+      x: args[:x], 
+      y: args[:y],
+      width_unit: width_unit,
+      height_unit: height_unit,
+      offset_unit: offset_unit,
+      colour: args[:colour],
+      opacity: args[:opacity]
+    ).build
   end
 
   def self.top_skewb_grid(args)

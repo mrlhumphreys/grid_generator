@@ -34,6 +34,19 @@ module GridGenerator
       def height
         @height ||= squares.size
       end
+
+      # units
+      def width_unit
+        @width_unit ||= GridGenerator::Cubic::UnitsFactory.new(side: side, type: :width, units: units).build 
+      end
+  
+      def height_unit
+        @height_unit ||= GridGenerator::Cubic::UnitsFactory.new(side: side, type: :height, units: units).build 
+      end
+  
+      def offset_unit
+        @offset_unit ||= GridGenerator::Cubic::UnitsFactory.new(side: side, type: :offset, units: units).build 
+      end
   
       # positioning squares
   
@@ -108,7 +121,6 @@ module GridGenerator
               GridGenerator::Cubic::SquareFactory.new(
                 x: square_position(row_num, col_num)[0,0], 
                 y: square_position(row_num, col_num)[1,0], 
-                units: units, 
                 width_unit: width_unit,
                 height_unit: height_unit,
                 offset_unit: offset_unit,

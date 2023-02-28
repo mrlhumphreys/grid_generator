@@ -9,87 +9,45 @@ module GridGenerator
     
       def arrow_start_point
         [
-          [
-            x,
-            y+ARROW_LENGTH
-          ],
-          [
-            x+(ARROW_WIDTH/2),
-            y
-          ],
-          [
-            x+ARROW_WIDTH,
-            y+ARROW_LENGTH
-          ]
+          [ x, y+ARROW_LENGTH ],
+          [ x+(ARROW_WIDTH/2), y ],
+          [ x+ARROW_WIDTH, y+ARROW_LENGTH ]
         ]
       end
     
       def arrow_start_flat
         [
-          [
-            x+(ARROW_WIDTH/2)-(LINE_WIDTH/2),
-            y
-          ],
-          [
-            x+(ARROW_WIDTH/2)+(LINE_WIDTH/2),
-            y
-          ]
+          [ x+(ARROW_WIDTH/2)-(LINE_WIDTH/2), y ],
+          [ x+(ARROW_WIDTH/2)+(LINE_WIDTH/2), y ]
         ]
       end
     
       def arrow_start_side
         [
-          [
-            x+(ARROW_WIDTH/2)+(LINE_WIDTH/2),
-            y+ARROW_LENGTH
-          ],
-          [
-            x+(ARROW_WIDTH/2)+(LINE_WIDTH/2),
-            y+ARROW_LENGTH+length
-          ]
+          [ x+(ARROW_WIDTH/2)+(LINE_WIDTH/2), y+ARROW_LENGTH ],
+          [ x+(ARROW_WIDTH/2)+(LINE_WIDTH/2), y+ARROW_LENGTH+length ]
         ]
       end
     
       def arrow_end_point
         [
-          [
-            x+ARROW_WIDTH,
-            y+ARROW_LENGTH+length
-          ],
-          [
-            x+(ARROW_WIDTH/2),
-            y+(ARROW_LENGTH*2)+length
-          ],
-          [
-            x,
-            y+ARROW_LENGTH+length
-          ]
+          [ x+ARROW_WIDTH, y+ARROW_LENGTH+length ],
+          [ x+(ARROW_WIDTH/2), y+(ARROW_LENGTH*2)+length ],
+          [ x, y+ARROW_LENGTH+length ]
         ]
       end
     
       def arrow_end_flat
         [
-          [
-            x+(ARROW_WIDTH/2)+(LINE_WIDTH/2),
-            y+(2*ARROW_LENGTH)+length
-          ],
-          [
-            x+(ARROW_WIDTH/2)-(LINE_WIDTH/2),
-            y+(2*ARROW_LENGTH)+length
-          ]
+          [ x+(ARROW_WIDTH/2)+(LINE_WIDTH/2), y+(2*ARROW_LENGTH)+length ],
+          [ x+(ARROW_WIDTH/2)-(LINE_WIDTH/2), y+(2*ARROW_LENGTH)+length ]
         ]
       end
     
       def arrow_end_side
         [
-          [
-            x+(ARROW_WIDTH/2)-(LINE_WIDTH/2),
-            y+ARROW_LENGTH+length
-          ],
-          [
-            x+(ARROW_WIDTH/2)-(LINE_WIDTH/2),
-            y+ARROW_LENGTH
-          ]
+          [ x+(ARROW_WIDTH/2)-(LINE_WIDTH/2), y+ARROW_LENGTH+length ],
+          [ x+(ARROW_WIDTH/2)-(LINE_WIDTH/2), y+ARROW_LENGTH ]
         ]
       end
     
