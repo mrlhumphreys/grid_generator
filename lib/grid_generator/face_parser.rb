@@ -28,7 +28,7 @@ module GridGenerator
     end
 
     def single?
-      @string.length == 1
+      !@string.include?("\\n")
     end
   
     attr_reader :string

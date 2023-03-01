@@ -1,4 +1,5 @@
 require_relative '../base_element'
+require_relative '../face_parser'
 require_relative 'units_factory'
 
 module GridGenerator
