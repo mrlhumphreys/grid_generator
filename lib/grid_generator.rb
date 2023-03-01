@@ -44,8 +44,7 @@ module GridGenerator
       width_unit: width_unit,
       height_unit: height_unit,
       offset_unit: offset_unit,
-      colour: args[:colour],
-      opacity: args[:opacity]
+      face: args[:face]
     ).build
   end
 

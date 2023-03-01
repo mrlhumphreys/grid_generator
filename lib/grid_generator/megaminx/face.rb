@@ -10,7 +10,7 @@ module GridGenerator
       def initialize(x:, y: , units: , elements: , rotation_offset: 0, label: nil)
         @x, @y = x, y
         @units = units
-        @elements = FaceParser.new(elements).to_a
+        @elements = FaceParser.new(elements).parse
         @rotation_offset = rotation_offset
         @label = label
       end

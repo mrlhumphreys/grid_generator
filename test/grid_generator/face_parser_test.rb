@@ -2,7 +2,7 @@ require "test_helper"
 require 'grid_generator/face_parser'
 
 describe GridGenerator::FaceParser do
-  describe 'to_a' do
+  describe '#parse' do
     it 'should generate' do
       face = GridGenerator::FaceParser.new('-,-,-\nB,r,-\nR,r,-')
       expected = [
@@ -18,7 +18,7 @@ describe GridGenerator::FaceParser do
           nil
         ]
       ]
-      assert_equal expected, face.to_a
+      assert_equal expected, face.parse
     end
   end
 end

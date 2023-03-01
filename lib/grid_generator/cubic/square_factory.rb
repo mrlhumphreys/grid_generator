@@ -4,12 +4,14 @@ require_relative 'units_factory'
 module GridGenerator
   module Cubic
     class SquareFactory
-      def initialize(x:, y:, width_unit:, height_unit:, offset_unit:, colour:, opacity:)
+      def initialize(x:, y:, width_unit:, height_unit:, offset_unit:, face:)
         @x, @y = x, y
         @width_unit = width_unit
         @height_unit = height_unit
         @offset_unit = offset_unit
-        @colour, @opacity = colour, opacity 
+        face_attr = FaceParser.new(face).parse
+        @colour = face_attr && face_attr[:colour]
+        @opacity = face_attr && face_attr[:opacity]
       end
   
       attr_reader :x, :y, :width_unit, :height_unit, :offset_unit, :colour, :opacity
@@ -40,7 +42,7 @@ module GridGenerator
       end
   
       def build
-        GridGenerator::BaseElement.new(points: points, colour: colour, opacity: opacity)
+        GridGenerator::BaseElement.new(points: points, colour: colour, opacity: opacity) unless colour.nil?
       end
     end
   end

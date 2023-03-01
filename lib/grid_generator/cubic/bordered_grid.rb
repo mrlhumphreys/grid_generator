@@ -9,7 +9,7 @@ module GridGenerator
         @units = units
         @squares = case squares
         when String
-          FaceParser.new(squares).to_a
+          FaceParser.new(squares).parse
         when Array
           squares
         else

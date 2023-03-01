@@ -8,7 +8,7 @@ module GridGenerator
         @units = units
         @elements = case elements 
         when String
-          FaceParser.new(elements).to_a
+          FaceParser.new(elements).parse
         when Array
           elements 
         else

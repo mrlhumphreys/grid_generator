@@ -1,5 +1,4 @@
 require 'matrix'
-require_relative '../face_parser'
 require_relative '../base_line'
 
 module GridGenerator
@@ -10,7 +9,7 @@ module GridGenerator
         @units = units
         @squares = case squares
         when String
-          FaceParser.new(squares).to_a
+          squares.split('\n').map { |r| r.split(',') }
         when Array
           squares
         else
@@ -124,8 +123,7 @@ module GridGenerator
                 width_unit: width_unit,
                 height_unit: height_unit,
                 offset_unit: offset_unit,
-                colour: col[:colour], 
-                opacity: col[:opacity]
+                face: col
               ).build
             end
           end

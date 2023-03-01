@@ -10,7 +10,8 @@ describe GridGenerator::Cubic::SquareFactory do
       width_unit = Matrix.column_vector([units, units/2])
       height_unit = Matrix.column_vector([-units, units/2])
       offset_unit = Matrix.column_vector([units,0])
-      colour = '#f0f0f0'
+      face = 'R'
+      colour = '#ff0000'
       opacity = 1
       factory = GridGenerator::Cubic::SquareFactory.new(
         x: 60, 
@@ -18,8 +19,7 @@ describe GridGenerator::Cubic::SquareFactory do
         width_unit: width_unit,
         height_unit: height_unit,
         offset_unit: offset_unit,
-        colour: colour, 
-        opacity: opacity
+        face: face
       )  
 
       points = [
@@ -37,7 +37,8 @@ describe GridGenerator::Cubic::SquareFactory do
       width_unit = Matrix.column_vector([units, (units*-0.5).to_i])
       height_unit = Matrix.column_vector([0, units])
       offset_unit = Matrix.column_vector([0,(units*0.5).to_i])
-      colour = '#f0f0f0'
+      face = 'R'
+      colour = '#ff0000'
       opacity = 1
       factory = GridGenerator::Cubic::SquareFactory.new(
         x: 60, 
@@ -45,8 +46,7 @@ describe GridGenerator::Cubic::SquareFactory do
         width_unit: width_unit, 
         height_unit: height_unit, 
         offset_unit: offset_unit, 
-        colour: colour, 
-        opacity: opacity
+        face: face
       )  
       points = [
         Matrix.column_vector([60, 40]),
@@ -63,7 +63,8 @@ describe GridGenerator::Cubic::SquareFactory do
       width_unit = Matrix.column_vector([units, units/2])
       height_unit = Matrix.column_vector([0, units])
       offset_unit = Matrix.column_vector([0,0])
-      colour = '#f0f0f0'
+      face = 'R'
+      colour = '#ff0000'
       opacity = 1
       factory = GridGenerator::Cubic::SquareFactory.new(
         x: 60, 
@@ -71,8 +72,7 @@ describe GridGenerator::Cubic::SquareFactory do
         width_unit: width_unit,
         height_unit: height_unit,
         offset_unit: offset_unit,
-        colour: colour, 
-        opacity: opacity
+        face: face
       )  
 
       points = [
