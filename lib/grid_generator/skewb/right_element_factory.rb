@@ -42,7 +42,7 @@ module GridGenerator
         when [(side_size/2),(side_size/2)] # Right Center
           grid_y+(side_size/2)*units
         else
-          nil
+          nil 
         end
       end
 
@@ -50,34 +50,34 @@ module GridGenerator
         case [row_num, col_num]
         when [0, 0] # Right Front 
           [
-            [ x, y+units ],
-            [ x+2*units, y ],
-            [ x, y+3*units ]
+            Matrix.column_vector([ x, y+units ]),
+            Matrix.column_vector([ x+2*units, y ]),
+            Matrix.column_vector([ x, y+3*units ])
           ]
         when [0, side_size] # Right Up 
           [
-            [ x, y+units ],
-            [ x+2*units, y ],
-            [ x+2*units, y+2*units ]
+            Matrix.column_vector([ x, y+units ]),
+            Matrix.column_vector([ x+2*units, y ]),
+            Matrix.column_vector([ x+2*units, y+2*units ])
           ]
         when [side_size, 0] # Right Down 
           [
-            [ x, y ],
-            [ x+2*units, y+units ],
-            [ x, y+2*units ]
+            Matrix.column_vector([ x, y ]),
+            Matrix.column_vector([ x+2*units, y+units ]),
+            Matrix.column_vector([ x, y+2*units ])
           ]
         when [side_size, side_size] # Right Right 
           [
-            [ x+2*units, y ],
-            [ x+2*units, y+2*units ],
-            [ x, y+3*units ]
+            Matrix.column_vector([ x+2*units, y ]),
+            Matrix.column_vector([ x+2*units, y+2*units ]),
+            Matrix.column_vector([ x, y+3*units ])
           ]
         when [(side_size/2), (side_size/2)] # Right Center
           [
-            [ x+2*units, y ],
-            [ x+4*units, y+units ],
-            [ x+2*units, y+4*units ],
-            [ x, y+3*units ]
+            Matrix.column_vector([ x+2*units, y ]),
+            Matrix.column_vector([ x+4*units, y+units ]),
+            Matrix.column_vector([ x+2*units, y+4*units ]),
+            Matrix.column_vector([ x, y+3*units ])
           ]
         else
           [] 

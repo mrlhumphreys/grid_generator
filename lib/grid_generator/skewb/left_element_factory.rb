@@ -50,34 +50,34 @@ module GridGenerator
         case [row_num, col_num]
         when [0, 0] # Left Up 
           [
-            [ x, y ],
-            [ x+2*units, y+units ],
-            [ x, y+2*units ]
+            Matrix.column_vector([ x, y ]),
+            Matrix.column_vector([ x+2*units, y+units ]),
+            Matrix.column_vector([ x, y+2*units ])
           ]
         when [0, side_size] # Left Front 
           [
-            [ x, y ],
-            [ x+2*units, y+units ],
-            [ x+2*units, y+3*units ]
+            Matrix.column_vector([ x, y ]),
+            Matrix.column_vector([ x+2*units, y+units ]),
+            Matrix.column_vector([ x+2*units, y+3*units ])
           ]
         when [side_size, 0] # Left Left
           [
-            [ x, y ],
-            [ x+2*units, y+3*units ],
-            [ x, y+2*units ]
+            Matrix.column_vector([ x, y ]),
+            Matrix.column_vector([ x+2*units, y+3*units ]),
+            Matrix.column_vector([ x, y+2*units ])
           ]
         when [side_size, side_size] # Left Down 
           [
-            [ x+2*units, y ],
-            [ x+2*units, y+2*units ],
-            [ x, y+units ]
+            Matrix.column_vector([ x+2*units, y ]),
+            Matrix.column_vector([ x+2*units, y+2*units ]),
+            Matrix.column_vector([ x, y+units ])
           ]
         when [(side_size/2), (side_size/2)] # Left Center
           [
-            [ x+2*units, y ],
-            [ x+4*units, y+3*units ],
-            [ x+2*units, y+4*units ],
-            [ x, y+units ]
+            Matrix.column_vector([ x+2*units, y ]),
+            Matrix.column_vector([ x+4*units, y+3*units ]),
+            Matrix.column_vector([ x+2*units, y+4*units ]),
+            Matrix.column_vector([ x, y+units ])
           ]
         else
           nil

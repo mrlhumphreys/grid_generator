@@ -37,8 +37,16 @@ describe GridGenerator::Skewb::RightSkewbGrid do
     it 'should generate' do
       grid = GridGenerator::Skewb::RightSkewbGrid.new(x: 100, y: 60, units: 20, elements: "R,-,b\\n-,-,-\\n-,-,-")
       expected = [
-        GridGenerator::BaseElement.new(points: [[100, 100], [140, 80], [100, 140]], colour: "#ff0000", opacity: 1),
-        GridGenerator::BaseElement.new(points: [[140, 80], [180, 60], [180, 100]], colour: "#0000ff", opacity: 0.4)
+        GridGenerator::BaseElement.new(points: [
+          Matrix.column_vector([100, 100]),
+          Matrix.column_vector([140, 80]),
+          Matrix.column_vector([100, 140])
+        ], colour: "#ff0000", opacity: 1),
+        GridGenerator::BaseElement.new(points: [
+          Matrix.column_vector([140, 80]),
+          Matrix.column_vector([180, 60]),
+          Matrix.column_vector([180, 100])
+        ], colour: "#0000ff", opacity: 0.4)
       ] 
       assert_equal expected, grid.element_shapes
     end
