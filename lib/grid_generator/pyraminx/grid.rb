@@ -1,5 +1,5 @@
 require_relative '../base_line'
-require_relative 'triangle_factory'
+require_relative 'triangle_factory_v1'
 
 module GridGenerator
   module Pyraminx
@@ -63,7 +63,7 @@ module GridGenerator
         elements.map do |row|
           row.map do |element|
             if element 
-              GridGenerator::Pyraminx::TriangleFactory.new(x: x, y: y, units: units, direction: element[:direction], colour: element[:colour], opacity: element[:opacity]).build
+              GridGenerator::Pyraminx::TriangleFactoryV1.new(x: x, y: y, units: units, direction: element[:direction], colour: element[:colour], opacity: element[:opacity]).build
             else
               nil
             end

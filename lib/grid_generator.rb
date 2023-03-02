@@ -17,7 +17,7 @@ require_relative 'grid_generator/arrows/vertical_arrow'
 require_relative 'grid_generator/arrows/horizontal_arrow'
 require_relative 'grid_generator/arrows/diagonal_down_arrow'
 require_relative 'grid_generator/arrows/diagonal_up_arrow'
-require_relative 'grid_generator/pyraminx/grid'
+require_relative 'grid_generator/pyraminx/face'
 require_relative 'grid_generator/megaminx/face'
 
 module GridGenerator
@@ -80,12 +80,8 @@ module GridGenerator
     Arrows::DiagonalUpArrow.new(**args)
   end
 
-  def self.pyraminx_grid(args)
-    Pyraminx::Grid.new(**args)
-  end
-
-  def self.pyraminx_triangle(args)
-    Pyraminx::Triangle.new(**args)
+  def self.pyraminx_face(args)
+    Pyraminx::Face.new(**args)
   end
 
   def self.megaminx_face(args)
