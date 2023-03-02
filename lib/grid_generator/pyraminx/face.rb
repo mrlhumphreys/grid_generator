@@ -47,7 +47,7 @@ module GridGenerator
             x1: x + start_x_for_row(i),
             y1: y + y_for_row(i),
             x2: x + (size - 1 - i)*units,
-            y2: y + y_for_row(size) 
+            y2: y + y_for_row(size-1) 
           )
         end
       end
@@ -56,7 +56,7 @@ module GridGenerator
         Array.new(size-1) do |i|
           GridGenerator::BaseLine.new( 
             x1: x + (i+1)*units,
-            y1: y + y_for_row(size),
+            y1: y + y_for_row(size-1),
             x2: x + end_x_for_row(i),
             y2: y + y_for_row(i) 
           )

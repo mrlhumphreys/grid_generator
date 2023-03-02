@@ -26,8 +26,8 @@ describe GridGenerator::Pyraminx::Face do
     it 'should generate' do
       grid = GridGenerator::Pyraminx::Face.new(x: 20, y: 20, units: 30, elements: "Y\\n-,-,-\\nY,-,-,-,Y")
       expected = [
-        GridGenerator::BaseLine.new(x1: 50, y1: 45.98076211353316, x2: 80, y2: 123.92304845413263),
-        GridGenerator::BaseLine.new(x1: 35, y1: 71.96152422706632, x2: 50, y2: 123.92304845413263) 
+        GridGenerator::BaseLine.new(x1: 50, y1: 45.98076211353316, x2: 80, y2: 97.94228634059948),
+        GridGenerator::BaseLine.new(x1: 35, y1: 71.96152422706632, x2: 50, y2: 97.94228634059948) 
       ]
       assert_equal expected, grid.diagonal_down_lines
     end
@@ -37,8 +37,8 @@ describe GridGenerator::Pyraminx::Face do
     it 'should generate' do
       grid = GridGenerator::Pyraminx::Face.new(x: 20, y: 20, units: 30, elements: "Y\\n-,-,-\\nY,-,-,-,Y")
       expected = [
-        GridGenerator::BaseLine.new(x1: 50, y1: 123.92304845413263, x2: 80, y2: 45.98076211353316),
-        GridGenerator::BaseLine.new(x1: 80, y1: 123.92304845413263, x2: 95, y2: 71.96152422706632)
+        GridGenerator::BaseLine.new(x1: 50, y1: 97.94228634059948, x2: 80, y2: 45.98076211353316),
+        GridGenerator::BaseLine.new(x1: 80, y1: 97.94228634059948, x2: 95, y2: 71.96152422706632)
       ]
       assert_equal expected, grid.diagonal_up_lines
     end
