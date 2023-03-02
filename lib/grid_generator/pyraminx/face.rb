@@ -27,7 +27,7 @@ module GridGenerator
       end
 
       def y_for_row(r)
-        Math.sqrt(3)/2 * r * units
+        Math.sqrt(3)/2 * (r + 1) * units
       end
 
       def vertical_lines 
@@ -65,7 +65,7 @@ module GridGenerator
 
       def top
         Matrix.column_vector([
-          x + units / 2,
+          x + size * units / 2,
           y 
         ])
       end
