@@ -1,5 +1,6 @@
 require_relative 'triangle_factory'
 require_relative '../rotator'
+require_relative '../scaler'
 
 module GridGenerator
   module Pyraminx
@@ -7,14 +8,15 @@ module GridGenerator
     # * * *
     # * * * * * 
     class Face
-      def initialize(x:, y:, units:, elements:, rotation_angle: 0)
+      def initialize(x:, y:, units:, elements:, vertical_scale: 1, rotation_angle: 0)
         @x, @y = x, y
         @units = units
         @elements = elements.split('\n').map { |r| r.split(',') }
+        @vertical_scale = vertical_scale 
         @rotation_angle = rotation_angle
       end
 
-      attr_reader :x, :y, :units, :elements, :rotation_angle
+      attr_reader :x, :y, :units, :elements, :vertical_scale, :rotation_angle
 
       def size
         elements.size
@@ -33,6 +35,10 @@ module GridGenerator
 
       def rotator
         @rotator ||= GridGenerator::Rotator.new(angle: rotation_angle, rotation_point: centre_point)
+      end
+
+      def scaler
+        @scaler ||= GridGenerator::Scaler.new(horizontal_scale: 1, vertical_scale: vertical_scale)
       end
 
       def start_x_for_row(r)
@@ -66,8 +72,11 @@ module GridGenerator
           point_1 = vertical_start_point_for_row(i)
           point_2 = vertical_end_point_for_row(i)
 
-          transformed_1 = rotator.rotate(point_1) + offset
-          transformed_2 = rotator.rotate(point_2) + offset
+          scaled_1 = scaler.scale(point_1)
+          scaled_2 = scaler.scale(point_2)
+
+          transformed_1 = rotator.rotate(scaled_1) + offset
+          transformed_2 = rotator.rotate(scaled_2) + offset
 
           GridGenerator::BaseLine.new( 
             x1: transformed_1[0,0],
@@ -97,8 +106,11 @@ module GridGenerator
           point_1 = diagonal_down_start_point_for_row(i)
           point_2 = diagonal_down_end_point_for_row(i)
 
-          transformed_1 = rotator.rotate(point_1) + offset
-          transformed_2 = rotator.rotate(point_2) + offset
+          scaled_1 = scaler.scale(point_1)
+          scaled_2 = scaler.scale(point_2)
+
+          transformed_1 = rotator.rotate(scaled_1) + offset
+          transformed_2 = rotator.rotate(scaled_2) + offset
 
           GridGenerator::BaseLine.new( 
             x1: transformed_1[0,0],
@@ -128,8 +140,11 @@ module GridGenerator
           point_1 = diagonal_up_start_point_for_row(i)
           point_2 = diagonal_up_end_point_for_row(i)
 
-          transformed_1 = rotator.rotate(point_1) + offset
-          transformed_2 = rotator.rotate(point_2) + offset
+          scaled_1 = scaler.scale(point_1)
+          scaled_2 = scaler.scale(point_2)
+
+          transformed_1 = rotator.rotate(scaled_1) + offset
+          transformed_2 = rotator.rotate(scaled_2) + offset
 
           GridGenerator::BaseLine.new( 
             x1: transformed_1[0,0],
@@ -163,7 +178,8 @@ module GridGenerator
 
       def points
         [ top, bottom_left, bottom_right ].map do |point|
-          rotator.rotate(point) + offset
+          scaled = scaler.scale(point)
+          rotator.rotate(scaled) + offset
         end
       end
 
@@ -182,7 +198,8 @@ module GridGenerator
               units: units,
               size: size,
               face: col,
-              rotator: rotator
+              rotator: rotator,
+              scaler: scaler
             ).build unless col == '-' 
           end
         end.flatten.compact

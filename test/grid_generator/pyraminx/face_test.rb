@@ -15,6 +15,12 @@ describe GridGenerator::Pyraminx::Face do
       expected = "65,98 110,20 20,20"
       assert_equal expected, grid.points_string
     end
+
+    it 'should generate with scale' do
+      grid = GridGenerator::Pyraminx::Face.new(x: 20, y: 20, units: 30, elements: "Y\\n-,-,-\\nY,-,-,-,Y", vertical_scale: 0.5)
+      expected = "65,20 20,59 110,59"
+      assert_equal expected, grid.points_string
+    end
   end
 
   describe '#vertical_lines' do
@@ -32,6 +38,15 @@ describe GridGenerator::Pyraminx::Face do
       expected = [
         GridGenerator::BaseLine.new(x1: 80.0, y1: 71.96152422706632, x2: 50.0, y2: 71.96152422706632),
         GridGenerator::BaseLine.new(x1: 95.0, y1: 45.98076211353316, x2: 35.0, y2: 45.980762113533174),
+      ]
+      assert_equal expected, grid.vertical_lines
+    end
+
+    it 'should generate with scale' do
+      grid = GridGenerator::Pyraminx::Face.new(x: 20, y: 20, units: 30, elements: "Y\\n-,-,-\\nY,-,-,-,Y", vertical_scale: 0.5)
+      expected = [
+        GridGenerator::BaseLine.new(x1: 50, y1: 32.99038105676658, x2: 80, y2: 32.99038105676658),
+        GridGenerator::BaseLine.new(x1: 35, y1: 45.98076211353316, x2: 95, y2: 45.98076211353316),
       ]
       assert_equal expected, grid.vertical_lines
     end
@@ -55,6 +70,15 @@ describe GridGenerator::Pyraminx::Face do
       ]
       assert_equal expected, grid.diagonal_down_lines
     end
+
+    it 'should generate with scale' do
+      grid = GridGenerator::Pyraminx::Face.new(x: 20, y: 20, units: 30, elements: "Y\\n-,-,-\\nY,-,-,-,Y", vertical_scale: 0.5)
+      expected = [
+        GridGenerator::BaseLine.new(x1: 50.0, y1: 32.99038105676658, x2: 80.0, y2: 58.97114317029974),
+        GridGenerator::BaseLine.new(x1: 35.0, y1: 45.98076211353316, x2: 50.0, y2: 58.97114317029974) 
+      ]
+      assert_equal expected, grid.diagonal_down_lines
+    end
   end
 
   describe '#diagonal_up_lines' do
@@ -72,6 +96,15 @@ describe GridGenerator::Pyraminx::Face do
       expected = [
         GridGenerator::BaseLine.new(x1: 80.0, y1: 20.0, x2: 50.0, y2: 71.96152422706632),
         GridGenerator::BaseLine.new(x1: 49.99999999999999, y1: 20.0, x2: 35.0, y2: 45.980762113533174)
+      ]
+      assert_equal expected, grid.diagonal_up_lines
+    end
+
+    it 'should generate with scale' do
+      grid = GridGenerator::Pyraminx::Face.new(x: 20, y: 20, units: 30, elements: "Y\\n-,-,-\\nY,-,-,-,Y", vertical_scale: 0.5)
+      expected = [
+        GridGenerator::BaseLine.new(x1: 50, y1: 58.97114317029974, x2: 80, y2: 32.99038105676658),
+        GridGenerator::BaseLine.new(x1: 80, y1: 58.97114317029974, x2: 95, y2: 45.98076211353316)
       ]
       assert_equal expected, grid.diagonal_up_lines
     end
@@ -117,6 +150,28 @@ describe GridGenerator::Pyraminx::Face do
           Matrix.column_vector([35.0, 45.980762113533174]),
           Matrix.column_vector([19.999999999999993, 20.000000000000007]),
           Matrix.column_vector([49.99999999999999, 20.0])
+        ], colour: "#ffff00", opacity: 1)
+      ]
+      assert_equal expected, grid.element_shapes
+    end
+
+    it 'should generate with scale' do
+      grid = GridGenerator::Pyraminx::Face.new(x: 20, y: 20, units: 30, elements: "Y\\n-,-,-\\nY,-,-,-,Y", vertical_scale: 0.5)
+      expected = [
+        GridGenerator::BaseElement.new(points: [
+          Matrix.column_vector([65.0, 20.0]),
+          Matrix.column_vector([80.0, 32.99038105676658]),
+          Matrix.column_vector([50.0, 32.99038105676658])
+        ], colour: "#ffff00", opacity: 1),
+        GridGenerator::BaseElement.new(points: [
+          Matrix.column_vector([35.0, 45.98076211353316]),
+          Matrix.column_vector([50.0, 58.97114317029974]),
+          Matrix.column_vector([20.0, 58.97114317029974])
+        ], colour: "#ffff00", opacity: 1),
+        GridGenerator::BaseElement.new(points: [
+          Matrix.column_vector([95.0, 45.98076211353316]),
+          Matrix.column_vector([110.0, 58.97114317029974]),
+          Matrix.column_vector([80.0, 58.97114317029974])
         ], colour: "#ffff00", opacity: 1)
       ]
       assert_equal expected, grid.element_shapes

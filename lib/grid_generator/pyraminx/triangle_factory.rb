@@ -4,7 +4,7 @@ require_relative '../base_element'
 module GridGenerator
   module Pyraminx
     class TriangleFactory
-      def initialize(x:, y:, row:, col:, units:, size:, face:, rotator:)
+      def initialize(x:, y:, row:, col:, units:, size:, face:, rotator:, scaler:)
         @x, @y = x, y
         @row = row
         @col = col
@@ -14,9 +14,10 @@ module GridGenerator
         @colour = face_attr && face_attr[:colour]
         @opacity = face_attr && face_attr[:opacity]
         @rotator = rotator
+        @scaler = scaler
       end
 
-      attr_reader :x, :y, :row, :col, :units, :size, :colour, :opacity, :rotator
+      attr_reader :x, :y, :row, :col, :units, :size, :colour, :opacity, :rotator, :scaler
 
       def offset
         Matrix.column_vector([x, y])
@@ -110,7 +111,8 @@ module GridGenerator
       def points
         all_points = col % 2 == 0 ? even_points : odd_points
         all_points.map do |point|
-          rotator.rotate(point) + offset
+          scaled = scaler.scale(point)
+          rotator.rotate(scaled) + offset
         end
       end
 
