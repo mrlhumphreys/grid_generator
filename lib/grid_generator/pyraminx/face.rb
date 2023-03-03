@@ -1,4 +1,5 @@
 require_relative 'triangle_factory'
+require_relative '../rotator'
 
 module GridGenerator
   module Pyraminx
@@ -6,16 +7,32 @@ module GridGenerator
     # * * *
     # * * * * * 
     class Face
-      def initialize(x:, y:, units:, elements:) 
+      def initialize(x:, y:, units:, elements:, rotation_angle: 0)
         @x, @y = x, y
         @units = units
         @elements = elements.split('\n').map { |r| r.split(',') }
+        @rotation_angle = rotation_angle
       end
 
-      attr_reader :x, :y, :units, :elements
+      attr_reader :x, :y, :units, :elements, :rotation_angle
 
       def size
         elements.size
+      end
+
+      def centre_point
+        Matrix.column_vector([
+          size * units * 0.5,
+          size * Math.sqrt(3) * 0.25 * units
+        ])
+      end
+
+      def offset
+        Matrix.column_vector([x, y])
+      end
+
+      def rotator
+        @rotator ||= GridGenerator::Rotator.new(angle: rotation_angle, rotation_point: centre_point)
       end
 
       def start_x_for_row(r)
@@ -30,62 +47,124 @@ module GridGenerator
         Math.sqrt(3)/2 * (r + 1) * units
       end
 
+      def vertical_start_point_for_row(r)
+        Matrix.column_vector([
+          start_x_for_row(r),
+          y_for_row(r),
+        ])
+      end
+
+      def vertical_end_point_for_row(r)
+        Matrix.column_vector([
+          end_x_for_row(r),
+          y_for_row(r)
+        ])
+      end
+
       def vertical_lines 
         Array.new(size-1) do |i|
+          point_1 = vertical_start_point_for_row(i)
+          point_2 = vertical_end_point_for_row(i)
+
+          transformed_1 = rotator.rotate(point_1) + offset
+          transformed_2 = rotator.rotate(point_2) + offset
+
           GridGenerator::BaseLine.new( 
-            x1: x + start_x_for_row(i),
-            y1: y + y_for_row(i),
-            x2: x + end_x_for_row(i),
-            y2: y + y_for_row(i) 
+            x1: transformed_1[0,0],
+            y1: transformed_1[1,0],
+            x2: transformed_2[0,0],
+            y2: transformed_2[1,0]
           )
         end
+      end
+
+      def diagonal_down_start_point_for_row(r)
+        Matrix.column_vector([
+          start_x_for_row(r),
+          y_for_row(r),
+        ])
+      end
+
+      def diagonal_down_end_point_for_row(r)
+        Matrix.column_vector([
+          (size - 1 - r)*units,
+          y_for_row(size-1)
+        ])
       end
 
       def diagonal_down_lines 
         Array.new(size-1) do |i|
+          point_1 = diagonal_down_start_point_for_row(i)
+          point_2 = diagonal_down_end_point_for_row(i)
+
+          transformed_1 = rotator.rotate(point_1) + offset
+          transformed_2 = rotator.rotate(point_2) + offset
+
           GridGenerator::BaseLine.new( 
-            x1: x + start_x_for_row(i),
-            y1: y + y_for_row(i),
-            x2: x + (size - 1 - i)*units,
-            y2: y + y_for_row(size-1) 
+            x1: transformed_1[0,0],
+            y1: transformed_1[1,0],
+            x2: transformed_2[0,0],
+            y2: transformed_2[1,0]
           )
         end
       end
 
+      def diagonal_up_start_point_for_row(r)
+        Matrix.column_vector([
+          (r+1)*units,
+          y_for_row(size-1),
+        ])
+      end
+
+      def diagonal_up_end_point_for_row(r)
+        Matrix.column_vector([
+          end_x_for_row(r),
+          y_for_row(r)
+        ])
+      end
+
       def diagonal_up_lines 
         Array.new(size-1) do |i|
+          point_1 = diagonal_up_start_point_for_row(i)
+          point_2 = diagonal_up_end_point_for_row(i)
+
+          transformed_1 = rotator.rotate(point_1) + offset
+          transformed_2 = rotator.rotate(point_2) + offset
+
           GridGenerator::BaseLine.new( 
-            x1: x + (i+1)*units,
-            y1: y + y_for_row(size-1),
-            x2: x + end_x_for_row(i),
-            y2: y + y_for_row(i) 
+            x1: transformed_1[0,0],
+            y1: transformed_1[1,0],
+            x2: transformed_2[0,0],
+            y2: transformed_2[1,0]
           )
         end
       end
 
       def top
         Matrix.column_vector([
-          x + size * units / 2,
-          y 
+          size * units / 2,
+          0
         ])
       end
 
       def bottom_left
         Matrix.column_vector([
-          x,
-          y + size * Math.sqrt(3)/2 * units
+          0,
+          size * Math.sqrt(3)/2 * units
         ])
       end
 
       def bottom_right
         Matrix.column_vector([
-          x + size * units,
-          y + size * Math.sqrt(3)/2 * units
+          size * units,
+          size * Math.sqrt(3)/2 * units
         ])
       end
 
       def points
-        [ top, bottom_left, bottom_right ]
+        [ top, bottom_left, bottom_right ].map do |point|
+          rotator.rotate(point) + offset
+        end
       end
 
       def points_string
@@ -102,7 +181,8 @@ module GridGenerator
               col: col_num,
               units: units,
               size: size,
-              face: col
+              face: col,
+              rotator: rotator
             ).build unless col == '-' 
           end
         end.flatten.compact
