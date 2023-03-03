@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    grid_generator (0.1.11)
+    grid_generator (0.1.12)
       matrix (~> 0.4.2)
 
 GEM
