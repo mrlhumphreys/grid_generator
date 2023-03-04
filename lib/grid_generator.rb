@@ -19,6 +19,7 @@ require_relative 'grid_generator/arrows/diagonal_down_arrow'
 require_relative 'grid_generator/arrows/diagonal_up_arrow'
 require_relative 'grid_generator/pyraminx/face'
 require_relative 'grid_generator/megaminx/face'
+require_relative 'grid_generator/megaminx/face_projection'
 
 module GridGenerator
   def self.iso_view(args)
