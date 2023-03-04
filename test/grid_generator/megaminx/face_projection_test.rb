@@ -33,6 +33,21 @@ describe GridGenerator::Megaminx::FaceProjection do
     end
   end
 
+  describe '#top_right_face_lines' do
+    it 'should generate' do
+      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30)
+      expected = [
+        GridGenerator::BaseLine.new(y1: 39.09830056250526, x1: 228.77852522924732, x2: 294.49491424413895, y2: 129.54915028125262),
+        GridGenerator::BaseLine.new(y1: 98.64745084375788, x1: 294.49491424413895, x2: 228.77852522924732, y2: 120.0),
+        GridGenerator::BaseLine.new(y1: 135.45084971874735, x1: 276.331351044005, x2: 170.0, y2: 58.19660112501052),
+        GridGenerator::BaseLine.new(y1: 98.6474508437579, x1: 199.38926261462365, x2: 199.38926261462365, y2: 29.54915028125263), 
+        GridGenerator::BaseLine.new(y1: 39.09830056250526, x1: 170.0, x2: 276.331351044005, y2: 73.64745084375788)
+      ]
+
+      assert_equal expected, projection.top_right_face_lines
+    end
+  end
+
   describe '#front_face_lines' do
     it 'should generate' do
       projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30)
