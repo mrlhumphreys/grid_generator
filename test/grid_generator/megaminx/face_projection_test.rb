@@ -37,11 +37,11 @@ describe GridGenerator::Megaminx::FaceProjection do
     it 'should generate' do
       projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30)
       expected = [
-        GridGenerator::BaseLine.new(y1: 141.3525491562421, x1: 258.167787843871, x2: 170.0, y2: 245.0), 
-        GridGenerator::BaseLine.new(y1: 245.0, x1: 224.49068960040208, x2: 98.67076127786349, y2: 193.17627457812108),
-        GridGenerator::BaseLine.new(y1: 245.0, x1: 115.50931039959795, x2: 125.91610607806452, y2: 109.32372542187895),
-        GridGenerator::BaseLine.new(y1: 141.35254915624213, x1: 81.83221215612903, x2: 214.0838939219355, y2: 109.32372542187895),
-        GridGenerator::BaseLine.new(y1: 77.29490168751578, x1: 170.0, x2: 241.32923872213652, y2: 193.17627457812105)
+        GridGenerator::BaseLine.new(y1: 120.0, x1: 228.77852522924732, x2: 188.16356320013404, y2: 245.0), 
+        GridGenerator::BaseLine.new(y1: 210.45084971874735, x1: 235.71638901489172, x2: 104.28361098510831, y2: 210.45084971874738),
+        GridGenerator::BaseLine.new(y1: 245.0, x1: 151.836436799866, x2: 111.22147477075269, y2: 120.00000000000001),
+        GridGenerator::BaseLine.new(y1: 175.90169943749476, x1: 93.05791157061867, x2: 199.38926261462365, y2: 98.64745084375788),
+        GridGenerator::BaseLine.new(y1: 98.6474508437579, x1: 140.61073738537635, x2: 246.94208842938133, y2: 175.90169943749473)
       ]
       assert_equal expected, projection.front_face_lines
     end

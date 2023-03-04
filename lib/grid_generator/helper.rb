@@ -11,8 +11,8 @@ module GridGenerator
       dy = b[1,0] - a[1,0]
 
       Array.new(i) do |n|
-        interval_x = dx / i 
-        interval_y = dy / i
+        interval_x = dx / (i + 1) 
+        interval_y = dy / (i + 1)
         x = a[0,0] + (n + 1) * interval_x
         y = a[1,0] + (n + 1) * interval_y
         Matrix.column_vector([x, y])
