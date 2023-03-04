@@ -86,7 +86,7 @@ module GridGenerator
             x1: offset_p[0,0],
             y1: offset_p[1,0],
             x2: offset_d[0,0],
-            y2: offset_p[1,0]
+            y2: offset_d[1,0]
           )
         end
       end
