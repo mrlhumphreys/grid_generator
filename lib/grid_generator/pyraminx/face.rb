@@ -1,6 +1,7 @@
 require_relative 'triangle_factory'
 require_relative '../rotator'
 require_relative '../scaler'
+require_relative '../line'
 
 module GridGenerator
   module Pyraminx
@@ -78,12 +79,7 @@ module GridGenerator
           transformed_1 = rotator.rotate(scaled_1) + offset
           transformed_2 = rotator.rotate(scaled_2) + offset
 
-          GridGenerator::BaseLine.new( 
-            x1: transformed_1[0,0],
-            y1: transformed_1[1,0],
-            x2: transformed_2[0,0],
-            y2: transformed_2[1,0]
-          )
+          GridGenerator::Line.new(a: transformed_1, b: transformed_2) 
         end
       end
 
@@ -112,12 +108,7 @@ module GridGenerator
           transformed_1 = rotator.rotate(scaled_1) + offset
           transformed_2 = rotator.rotate(scaled_2) + offset
 
-          GridGenerator::BaseLine.new( 
-            x1: transformed_1[0,0],
-            y1: transformed_1[1,0],
-            x2: transformed_2[0,0],
-            y2: transformed_2[1,0]
-          )
+          GridGenerator::Line.new(a: transformed_1, b: transformed_2) 
         end
       end
 
@@ -146,12 +137,7 @@ module GridGenerator
           transformed_1 = rotator.rotate(scaled_1) + offset
           transformed_2 = rotator.rotate(scaled_2) + offset
 
-          GridGenerator::BaseLine.new( 
-            x1: transformed_1[0,0],
-            y1: transformed_1[1,0],
-            x2: transformed_2[0,0],
-            y2: transformed_2[1,0]
-          )
+          GridGenerator::Line.new(a: transformed_1, b: transformed_2) 
         end
       end
 

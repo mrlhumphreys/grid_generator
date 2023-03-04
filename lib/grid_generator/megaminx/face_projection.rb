@@ -1,6 +1,7 @@
 require 'matrix'
 require_relative '../rotator'
 require_relative '../helper'
+require_relative '../line'
 
 module GridGenerator
   module Megaminx
@@ -90,14 +91,9 @@ module GridGenerator
       def connecting_lines
         pentagon_points.each_with_index.map do |p, i|
           d = decagon_points[i*2]
-          offset_p = p + offset
-          offset_d = d + offset
-          GridGenerator::BaseLine.new(
-            x1: offset_p[0,0],
-            y1: offset_p[1,0],
-            x2: offset_d[0,0],
-            y2: offset_d[1,0]
-          )
+          line_start = p + offset
+          line_end = d + offset
+          GridGenerator::Line.new(a: line_start, b: line_end) 
         end
       end
       
@@ -115,12 +111,7 @@ module GridGenerator
           line_start = ab_intervals.last + offset
           line_end = cd_intervals.first + offset
 
-          GridGenerator::BaseLine.new(
-            x1: line_start[0,0],
-            y1: line_start[1,0],
-            x2: line_end[0,0],
-            y2: line_end[1,0]
-          )
+          GridGenerator::Line.new(a: line_start, b: line_end)
         end
       end
 
@@ -138,12 +129,7 @@ module GridGenerator
           line_start = ab_intervals.last + offset
           line_end = cd_intervals.first + offset
 
-          GridGenerator::BaseLine.new(
-            x1: line_start[0,0],
-            y1: line_start[1,0],
-            x2: line_end[0,0],
-            y2: line_end[1,0]
-          )
+          GridGenerator::Line.new(a: line_start, b: line_end)
         end
       end
 

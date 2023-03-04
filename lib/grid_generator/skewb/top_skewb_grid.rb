@@ -1,3 +1,4 @@
+require_relative '../line'
 require_relative '../base_element'
 require_relative 'skewb_grid'
 require_relative 'top_element_factory'
@@ -20,23 +21,33 @@ module GridGenerator
   
       def rows
         Array.new(side_size) do |i|
-          GridGenerator::BaseLine.new( 
-            x1: x + 2*units,
-            y1: y + (2*i+1)*units,
-            x2: x + 6*units,
-            y2: y + (2*i+1)*units
-          ) 
+          a = Matrix.column_vector([
+            x + 2*units,
+            y + (2*i+1)*units,
+          ])
+
+          b = Matrix.column_vector([
+            x + 6*units,
+            y + (2*i+1)*units
+          ])
+
+          GridGenerator::Line.new(a: a, b: b) 
         end
       end
   
       def columns
         Array.new(side_size) do |i|
-          GridGenerator::BaseLine.new( 
-            x1: x + (4*i+2)*units,
-            y1: y + units,
-            x2: x + (4*i+2)*units,
-            y2: y + 3*units
-          ) 
+          a = Matrix.column_vector([
+            x + (4*i+2)*units,
+            y + units,
+          ])
+
+          b = Matrix.column_vector([
+            x + (4*i+2)*units,
+            y + 3*units
+          ])
+
+          GridGenerator::Line.new(a: a, b: b) 
         end
       end
     end

@@ -15,10 +15,22 @@ describe GridGenerator::Cubic::RightGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::RightGrid.new(x: 120, y: 70, units: 20, squares: "o,o,o\\n-,-,-\\n-,-,R\\no,o,o")
       expected = [
-        GridGenerator::BaseLine.new(x1: 120, y1: 120, x2: 180, y2: 90),
-        GridGenerator::BaseLine.new(x1: 120, y1: 140, x2: 180, y2: 110),
-        GridGenerator::BaseLine.new(x1: 120, y1: 160, x2: 180, y2: 130),
-        GridGenerator::BaseLine.new(x1: 120, y1: 180, x2: 180, y2: 150)
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([120, 120]), 
+          b: Matrix.column_vector([180, 90])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([120, 140]), 
+          b: Matrix.column_vector([180, 110])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([120, 160]), 
+          b: Matrix.column_vector([180, 130])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([120, 180]), 
+          b: Matrix.column_vector([180, 150])
+        )
       ] 
       assert_equal expected, grid.rows
     end
@@ -28,9 +40,18 @@ describe GridGenerator::Cubic::RightGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::RightGrid.new(x: 120, y: 70, units: 20, squares: "o,o,o\\n-,-,-\\n-,-,R\\no,o,o")
       expected = [
-        GridGenerator::BaseLine.new(x1: 140, y1: 90, x2: 140, y2: 170),
-        GridGenerator::BaseLine.new(x1: 160, y1: 80, x2: 160, y2: 160),
-        GridGenerator::BaseLine.new(x1: 180, y1: 70, x2: 180, y2: 150)
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([140, 90]), 
+          b: Matrix.column_vector([140, 170])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([160, 80]), 
+          b: Matrix.column_vector([160, 160])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([180, 70]), 
+          b: Matrix.column_vector([180, 150])
+        )
       ] 
       assert_equal expected, grid.columns
     end

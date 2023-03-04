@@ -15,8 +15,14 @@ describe GridGenerator::Skewb::RightSkewbGrid do
     it 'should generate' do
       grid = GridGenerator::Skewb::RightSkewbGrid.new(x: 100, y: 60, units: 20, elements: "R,-,b\\n-,-,-\\n-,-,-")
       expected = [
-        GridGenerator::BaseLine.new(x1: 100, y1: 140, x2: 140, y2: 80),
-        GridGenerator::BaseLine.new(x1: 140, y1: 160, x2: 180, y2: 100)
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([100, 140]), 
+          b: Matrix.column_vector([140, 80])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([140, 160]), 
+          b: Matrix.column_vector([180, 100])
+        )
       ] 
       assert_equal expected, grid.rows
     end
@@ -26,8 +32,14 @@ describe GridGenerator::Skewb::RightSkewbGrid do
     it 'should generate' do
       grid = GridGenerator::Skewb::RightSkewbGrid.new(x: 100, y: 60, units: 20, elements: "R,-,b\\n-,-,-\\n-,-,-")
       expected = [
-        GridGenerator::BaseLine.new(x1: 100, y1: 140, x2: 140, y2: 160),
-        GridGenerator::BaseLine.new(x1: 140, y1: 80, x2: 180, y2: 100)
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([100, 140]), 
+          b: Matrix.column_vector([140, 160])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([140, 80]),
+          b: Matrix.column_vector([180, 100])
+        )
       ] 
       assert_equal expected, grid.columns
     end

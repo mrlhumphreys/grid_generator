@@ -23,11 +23,26 @@ describe GridGenerator::Megaminx::FaceProjection do
     it 'should generate' do
       projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30)
       expected = [
-        GridGenerator::BaseLine.new(y1: 77.29490168751578, x1: 170.0, x2: 170.0, y2: 20.0),
-        GridGenerator::BaseLine.new(y1: 141.3525491562421, x1: 258.167787843871, x2: 312.658477444273, y2: 123.64745084375788),
-        GridGenerator::BaseLine.new(y1: 245.0, x1: 224.49068960040208, x2: 258.167787843871, y2: 291.3525491562421),
-        GridGenerator::BaseLine.new(y1: 245.0, x1: 115.50931039959795, x2: 81.83221215612905, y2: 291.3525491562421), 
-        GridGenerator::BaseLine.new(y1: 141.35254915624213, x1: 81.83221215612903, x2: 27.341522555726954, y2: 123.64745084375792)
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([170.0, 77.29490168751578]), 
+          b: Matrix.column_vector([170.0, 20.0])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([258.167787843871, 141.3525491562421]), 
+          b: Matrix.column_vector([312.658477444273, 123.64745084375788])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([224.49068960040208, 245.0]), 
+          b: Matrix.column_vector([258.167787843871, 291.3525491562421])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([115.50931039959795, 245.0]), 
+          b: Matrix.column_vector([81.83221215612905, 291.3525491562421])
+        ), 
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([81.83221215612903, 141.35254915624213]), 
+          b: Matrix.column_vector([27.341522555726954, 123.64745084375792])
+        )
       ] 
       assert_equal expected, projection.connecting_lines
     end
@@ -37,11 +52,26 @@ describe GridGenerator::Megaminx::FaceProjection do
     it 'should generate' do
       projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30)
       expected = [
-        GridGenerator::BaseLine.new(y1: 39.09830056250526, x1: 228.77852522924732, x2: 294.49491424413895, y2: 129.54915028125262),
-        GridGenerator::BaseLine.new(y1: 98.64745084375788, x1: 294.49491424413895, x2: 228.77852522924732, y2: 120.0),
-        GridGenerator::BaseLine.new(y1: 135.45084971874735, x1: 276.331351044005, x2: 170.0, y2: 58.19660112501052),
-        GridGenerator::BaseLine.new(y1: 98.6474508437579, x1: 199.38926261462365, x2: 199.38926261462365, y2: 29.54915028125263), 
-        GridGenerator::BaseLine.new(y1: 39.09830056250526, x1: 170.0, x2: 276.331351044005, y2: 73.64745084375788)
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([228.77852522924732, 39.09830056250526]), 
+          b: Matrix.column_vector([294.49491424413895, 129.54915028125262])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([294.49491424413895, 98.64745084375788]), 
+          b: Matrix.column_vector([228.77852522924732, 120.0])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([276.331351044005, 135.45084971874735]), 
+          b: Matrix.column_vector([170.0, 58.19660112501052])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([199.38926261462365, 98.6474508437579]), 
+          b: Matrix.column_vector([199.38926261462365, 29.54915028125263])
+        ), 
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([170.0, 39.09830056250526]), 
+          b: Matrix.column_vector([276.331351044005, 73.64745084375788])
+        )
       ]
 
       assert_equal expected, projection.top_right_face_lines
@@ -52,11 +82,26 @@ describe GridGenerator::Megaminx::FaceProjection do
     it 'should generate' do
       projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30)
       expected = [
-        GridGenerator::BaseLine.new(y1: 120.0, x1: 228.77852522924732, x2: 188.16356320013404, y2: 245.0), 
-        GridGenerator::BaseLine.new(y1: 210.45084971874735, x1: 235.71638901489172, x2: 104.28361098510831, y2: 210.45084971874738),
-        GridGenerator::BaseLine.new(y1: 245.0, x1: 151.836436799866, x2: 111.22147477075269, y2: 120.00000000000001),
-        GridGenerator::BaseLine.new(y1: 175.90169943749476, x1: 93.05791157061867, x2: 199.38926261462365, y2: 98.64745084375788),
-        GridGenerator::BaseLine.new(y1: 98.6474508437579, x1: 140.61073738537635, x2: 246.94208842938133, y2: 175.90169943749473)
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([228.77852522924732, 120.0]), 
+          b: Matrix.column_vector([188.16356320013404, 245.0])
+        ), 
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([235.71638901489172, 210.45084971874735]), 
+          b: Matrix.column_vector([104.28361098510831, 210.45084971874738])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([151.836436799866, 245.0]), 
+          b: Matrix.column_vector([111.22147477075269, 120.00000000000001])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([93.05791157061867, 175.90169943749476]), 
+          b: Matrix.column_vector([199.38926261462365, 98.64745084375788])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([140.61073738537635, 98.6474508437579]), 
+          b: Matrix.column_vector([246.94208842938133, 175.90169943749473])
+        )
       ]
       assert_equal expected, projection.front_face_lines
     end

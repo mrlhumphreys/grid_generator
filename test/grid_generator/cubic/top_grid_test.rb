@@ -15,9 +15,18 @@ describe GridGenerator::Cubic::TopGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::TopGrid.new(x: 20, y: 20, units: 20, squares: "b,b,b,b,b\\nb,-,b,-,b\\nb,b,b,b,b") 
       expected = [
-        GridGenerator::BaseLine.new(x1: 60, y1: 30, x2: 160, y2: 80),
-        GridGenerator::BaseLine.new(x1: 40, y1: 40, x2: 140, y2: 90),
-        GridGenerator::BaseLine.new(x1: 20, y1: 50, x2: 120, y2: 100)
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([60, 30]), 
+          b: Matrix.column_vector([160, 80])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([40, 40]), 
+          b: Matrix.column_vector([140, 90])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([20, 50]), 
+          b: Matrix.column_vector([120, 100])
+        )
       ] 
       assert_equal expected, grid.rows
     end
@@ -27,11 +36,26 @@ describe GridGenerator::Cubic::TopGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::TopGrid.new(x: 20, y: 20, units: 20, squares: "b,b,b,b,b\\nb,-,b,-,b\\nb,b,b,b,b") 
       expected = [
-        GridGenerator::BaseLine.new(x1: 100, y1: 30, x2: 40, y2: 60),
-        GridGenerator::BaseLine.new(x1: 120, y1: 40, x2: 60, y2: 70),
-        GridGenerator::BaseLine.new(x1: 140, y1: 50, x2: 80, y2: 80),
-        GridGenerator::BaseLine.new(x1: 160, y1: 60, x2: 100, y2: 90),
-        GridGenerator::BaseLine.new(x1: 180, y1: 70, x2: 120, y2: 100)
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([100, 30]), 
+          b: Matrix.column_vector([40, 60])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([120, 40]), 
+          b: Matrix.column_vector([60, 70])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([140, 50]), 
+          b: Matrix.column_vector([80, 80])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([160, 60]), 
+          b: Matrix.column_vector([100, 90])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([180, 70]), 
+          b: Matrix.column_vector([120, 100])
+        )
       ] 
       assert_equal expected, grid.columns
     end

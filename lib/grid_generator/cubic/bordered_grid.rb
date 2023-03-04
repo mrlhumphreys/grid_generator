@@ -1,3 +1,5 @@
+require 'matrix'
+require_relative '../line'
 require_relative '../face_parser'
 require_relative 'facing_square_factory'
 
@@ -73,23 +75,33 @@ module GridGenerator
   
       def rows
         Array.new(height) do |i|
-          GridGenerator::BaseLine.new(
-            x1: x,
-            y1: unit_y(i+1),
-            x2: max_x,
-            y2: unit_y(i+1)
-          ) 
+          a = Matrix.column_vector([
+            x,
+            unit_y(i+1),
+          ])
+
+          b = Matrix.column_vector([
+            max_x,
+            unit_y(i+1)
+          ])
+
+          GridGenerator::Line.new(a: a, b: b)
         end
       end
   
       def columns 
         Array.new(width) do |i|
-          GridGenerator::BaseLine.new(
-            x1: unit_x(i+1),
-            y1: y,
-            x2: unit_x(i+1),
-            y2: max_y
-          ) 
+          a = Matrix.column_vector([
+            unit_x(i+1),
+            y,
+          ])
+
+          b = Matrix.column_vector([
+            unit_x(i+1),
+            max_y
+          ])
+
+          GridGenerator::Line.new(a: a, b: b)
         end
       end
   
