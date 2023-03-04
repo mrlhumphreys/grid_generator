@@ -87,5 +87,9 @@ module GridGenerator
   def self.megaminx_face(args)
     Megaminx::Face.new(**args)
   end
+
+  def self.megaminx_face_projection(args)
+    Megaminx::FaceProjection.new(**args)
+  end
 end
 
