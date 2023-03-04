@@ -78,7 +78,7 @@ module GridGenerator
 
       # for svg 
       def connecting_lines
-        @connecting_lines ||= pentagon_points.each_with_index.map do |p, i|
+        pentagon_points.each_with_index.map do |p, i|
           d = decagon_points[i*2]
           offset_p = p + offset
           offset_d = d + offset
@@ -87,6 +87,28 @@ module GridGenerator
             y1: offset_p[1,0],
             x2: offset_d[0,0],
             y2: offset_d[1,0]
+          )
+        end
+      end
+
+      def front_face_lines
+        (0..4).map do |i| 
+          a = pentagon_points[i]
+          b = pentagon_points[(i+1)%5]
+          c = pentagon_points[(i+2)%5]
+          d = pentagon_points[(i+3)%5]
+
+          ab_intervals = GridGenerator::Helper.intervals(a,b,2)
+          cd_intervals = GridGenerator::Helper.intervals(c,d,2)
+
+          line_start = ab_intervals.last + offset
+          line_end = cd_intervals.first + offset
+
+          GridGenerator::BaseLine.new(
+            x1: line_start[0,0],
+            y1: line_start[1,0],
+            x2: line_end[0,0],
+            y2: line_end[1,0]
           )
         end
       end
@@ -100,6 +122,7 @@ module GridGenerator
       def pentagon_points_string
         pentagon_points.map { |p| p + offset }.map { |p| "#{p[0,0].round},#{p[1,0].round}" }.join(' ')
       end
+
     end
   end
 end
