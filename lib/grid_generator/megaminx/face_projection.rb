@@ -78,8 +78,8 @@ module GridGenerator
 
       # for svg 
       def connecting_lines
-        @connecting_lines ||= pentagon_points.map_with_index do |p, i|
-          d = decagon_point[i*2]
+        @connecting_lines ||= pentagon_points.each_with_index.map do |p, i|
+          d = decagon_points[i*2]
           offset_p = p + offset
           offset_d = d + offset
           GridGenerator::BaseLine.new(
