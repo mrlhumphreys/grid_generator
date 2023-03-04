@@ -36,8 +36,8 @@ module GridGenerator
 
       def decagon_top_point
         Matrix.column_vector([
-          0,
-          decagon_radius
+          decagon_radius,
+          0 
         ])
       end
 
