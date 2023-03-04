@@ -1,6 +1,6 @@
 require 'matrix'
-require '../rotator'
-require '../helper'
+require_relative '../rotator'
+require_relative '../helper'
 
 module GridGenerator
   module Megaminx
