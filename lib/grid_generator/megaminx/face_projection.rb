@@ -52,7 +52,7 @@ module GridGenerator
         @decagon_points ||= (0..9).map do |i|
           angle = 2.0 * Math::PI * i / 10.0
           rotator = GridGenerator::Rotator.new(angle: angle, rotation_point: rotation_point)    
-          rotator.rotate(top_point)
+          rotator.rotate(decagon_top_point)
         end
       end
 
@@ -72,7 +72,7 @@ module GridGenerator
         @pentagon_points ||= (0..4).map do |i|
           angle = 2.0 * Math::PI * i / 5.0
           rotator = GridGenerator::Rotator.new(angle: angle, rotation_point: rotation_point)    
-          rotator.rotate(top_point)
+          rotator.rotate(pentagon_top_point)
         end
       end
 
