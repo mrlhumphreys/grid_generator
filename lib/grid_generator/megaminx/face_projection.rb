@@ -126,11 +126,26 @@ module GridGenerator
 
       # for svg
       def right_face_lines
-        angle = Math::PI * 0.4
-        rotator = GridGenerator::Rotator.new(angle: angle, rotation_point: rotation_point)
-        top_right_face_lines_raw.map do |l|
-          rotator.rotate(l) + offset
-        end
+        rotator = GridGenerator::Rotator.new(angle: Math::PI * 0.4, rotation_point: rotation_point)
+        top_right_face_lines_raw.map { |l| rotator.rotate(l) + offset } 
+      end
+
+      # for svg
+      def down_face_lines
+        rotator = GridGenerator::Rotator.new(angle: Math::PI * 0.8, rotation_point: rotation_point)
+        top_right_face_lines_raw.map { |l| rotator.rotate(l) + offset } 
+      end
+
+      # for svg
+      def left_face_lines
+        rotator = GridGenerator::Rotator.new(angle: Math::PI * 1.2, rotation_point: rotation_point)
+        top_right_face_lines_raw.map { |l| rotator.rotate(l) + offset } 
+      end
+
+      # for svg
+      def top_left_face_lines
+        rotator = GridGenerator::Rotator.new(angle: Math::PI * 1.6, rotation_point: rotation_point)
+        top_right_face_lines_raw.map { |l| rotator.rotate(l) + offset } 
       end
 
       # for svg
