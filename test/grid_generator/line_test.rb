@@ -2,6 +2,31 @@ require 'test_helper'
 require 'grid_generator/line'
 
 describe GridGenerator::Line do
+  describe '#+' do
+    describe 'with matrix' do
+      it 'should return new offsetted line' do
+        a = Matrix.column_vector([1,2])
+        b = Matrix.column_vector([3,4])
+        line = GridGenerator::Line.new(a: a, b: b)
+        offset = Matrix.column_vector([5,5])
+        result = line + offset
+        expected = GridGenerator::Line.new(a: a + offset, b: b + offset)
+        assert_equal result, expected
+      end
+    end
+
+    describe 'without matrix' do
+      it 'should raise Argument Error' do
+        a = Matrix.column_vector([1,2])
+        b = Matrix.column_vector([3,4])
+        line = GridGenerator::Line.new(a: a, b: b)
+        assert_raises ArgumentError do
+          line + 4
+        end
+      end
+    end
+  end
+
   describe '#x1' do
     it 'should return the x co-ordinate of point a' do
       a = Matrix.column_vector([1.2,2.4])

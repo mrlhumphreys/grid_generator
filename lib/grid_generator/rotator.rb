@@ -11,9 +11,18 @@ module GridGenerator
 
     attr_reader :angle, :matrix, :rotation_point
 
-    def rotate(point) 
-      # subtract rotation point to move point towards 0,0, rotate, then add to move back
-      (matrix * (point - rotation_point)) + rotation_point 
+    # subtract rotation point to move point towards 0,0, rotate, then add to move back
+    def rotate(obj)
+      case obj
+      when Matrix
+        (matrix * (obj - rotation_point)) + rotation_point
+      when GridGenerator::Line
+        new_a = rotate(obj.a)
+        new_b = rotate(obj.b)
+        GridGenerator::Line.new(a: new_a, b: new_b)
+      else
+        raise ArgumentError, "Object must be Matrix or Line"
+      end
     end
   end
 end

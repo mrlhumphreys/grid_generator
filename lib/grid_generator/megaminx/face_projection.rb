@@ -87,18 +87,17 @@ module GridGenerator
         ]
       end
 
-      # for svg 
-      def connecting_lines
-        pentagon_points.each_with_index.map do |p, i|
-          d = decagon_points[i*2]
-          line_start = p + offset
-          line_end = d + offset
-          GridGenerator::Line.new(a: line_start, b: line_end) 
-        end
+      def right_pentagon_points
+        @right_pentagon_points ||= [
+          decagon_points[2],
+          decagon_points[3],
+          decagon_points[4],
+          pentagon_points[2],
+          pentagon_points[1]
+        ]
       end
-      
-      # for svg
-      def top_right_face_lines
+
+      def top_right_face_lines_raw
         (0..4).map do |i| 
           a = top_right_pentagon_points[i]
           b = top_right_pentagon_points[(i+1)%5]
@@ -108,10 +107,29 @@ module GridGenerator
           ab_intervals = GridGenerator::Helper.intervals(a,b,2)
           cd_intervals = GridGenerator::Helper.intervals(c,d,2)
 
-          line_start = ab_intervals.last + offset
-          line_end = cd_intervals.first + offset
+          GridGenerator::Line.new(a: ab_intervals[-1], b: cd_intervals[0])
+        end
+      end
 
-          GridGenerator::Line.new(a: line_start, b: line_end)
+      # for svg
+      def connecting_lines
+        pentagon_points.each_with_index.map do |p, i|
+          d = decagon_points[i*2]
+          GridGenerator::Line.new(a: p, b: d) + offset
+        end
+      end
+
+      # for svg
+      def top_right_face_lines
+        top_right_face_lines_raw.map { |l| l + offset }
+      end
+
+      # for svg
+      def right_face_lines
+        angle = Math::PI * 0.4
+        rotator = GridGenerator::Rotator.new(angle: angle, rotation_point: rotation_point)
+        top_right_face_lines_raw.map do |l|
+          rotator.rotate(l) + offset
         end
       end
 
@@ -126,10 +144,7 @@ module GridGenerator
           ab_intervals = GridGenerator::Helper.intervals(a,b,2)
           cd_intervals = GridGenerator::Helper.intervals(c,d,2)
 
-          line_start = ab_intervals.last + offset
-          line_end = cd_intervals.first + offset
-
-          GridGenerator::Line.new(a: line_start, b: line_end)
+          GridGenerator::Line.new(a: ab_intervals[-1], b: cd_intervals[0]) + offset
         end
       end
 
