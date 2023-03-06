@@ -58,8 +58,8 @@ module GridGenerator
       end
 
       def corner_points(i)
-        line_a = face_lines[(i+3) % 5]
-        line_b = face_lines[(i+4) % 5]
+        line_a = face_lines[(i-1) % 5]
+        line_b = face_lines[(i) % 5]
         intersection = GridGenerator::Helper.intersection(line_a, line_b)
 
         [
