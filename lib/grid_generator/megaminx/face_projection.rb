@@ -9,14 +9,18 @@ module GridGenerator
     class FaceProjection
       # units 30 - pentagon 90 - megaminx - 150
       # units * 5 
-      def initialize(x:, y:, units:, front_face_elements: "", top_right_face_elements: "")
+      def initialize(x:, y:, units:, front_face_elements: "", top_right_face_elements: "", right_face_elements: "", down_face_elements: "", left_face_elements: "", top_left_face_elements: "")
         @x, @y = x, y
         @units = units
         @front_face_elements = front_face_elements.split(',')
         @top_right_face_elements = top_right_face_elements.split(',')
+        @right_face_elements = right_face_elements.split(',')
+        @down_face_elements = down_face_elements.split(',')
+        @left_face_elements = left_face_elements.split(',')
+        @top_left_face_elements = top_left_face_elements.split(',')
       end
 
-      attr_reader :x, :y, :units, :front_face_elements, :top_right_face_elements
+      attr_reader :x, :y, :units, :front_face_elements, :top_right_face_elements, :right_face_elements, :down_face_elements, :left_face_elements, :top_left_face_elements
 
       def offset
         @offset ||= Matrix.column_vector([x, y])
@@ -78,6 +82,26 @@ module GridGenerator
         ]
       end
 
+      def right_pentagon_points
+        rotator = GridGenerator::Rotator.new(angle: Math::PI * 0.4, rotation_point: rotation_point)
+        @right_pentagon_points ||= top_right_pentagon_points.map { |p| rotator.rotate(p) } 
+      end
+
+      def down_pentagon_points
+        rotator = GridGenerator::Rotator.new(angle: Math::PI * 0.8, rotation_point: rotation_point)
+        @down_pentagon_points ||= top_right_pentagon_points.map { |p| rotator.rotate(p) } 
+      end
+
+      def left_pentagon_points
+        rotator = GridGenerator::Rotator.new(angle: Math::PI * 1.2, rotation_point: rotation_point)
+        @left_pentagon_points ||= top_right_pentagon_points.map { |p| rotator.rotate(p) } 
+      end
+
+      def top_left_pentagon_points
+        rotator = GridGenerator::Rotator.new(angle: Math::PI * 1.6, rotation_point: rotation_point)
+        @top_left_pentagon_points ||= top_right_pentagon_points.map { |p| rotator.rotate(p) } 
+      end
+
       def front_face_lines_raw
         (0..4).map do |i|
           a = pentagon_points[i-1] # offset one so first line is top right
@@ -93,7 +117,7 @@ module GridGenerator
       end
 
       def top_right_face_lines_raw
-        (0..4).map do |i| 
+        @top_right_face_lines_raw ||= (0..4).map do |i| 
           a = top_right_pentagon_points[i-1] # offset by one so first line is top right
           b = top_right_pentagon_points[(i)%5]
           c = top_right_pentagon_points[(i+1)%5]
@@ -104,6 +128,26 @@ module GridGenerator
 
           GridGenerator::Line.new(a: ab_intervals[-1], b: cd_intervals[0])
         end
+      end
+
+      def right_face_lines_raw
+        rotator = GridGenerator::Rotator.new(angle: Math::PI * 0.4, rotation_point: rotation_point)
+        @right_face_lines_raw ||= top_right_face_lines_raw.map { |l| rotator.rotate(l) } 
+      end
+
+      def down_face_lines_raw
+        rotator = GridGenerator::Rotator.new(angle: Math::PI * 0.8, rotation_point: rotation_point)
+        @down_face_lines_raw ||= top_right_face_lines_raw.map { |l| rotator.rotate(l) } 
+      end
+
+      def left_face_lines_raw
+        rotator = GridGenerator::Rotator.new(angle: Math::PI * 1.2, rotation_point: rotation_point)
+        @left_face_lines_raw ||= top_right_face_lines_raw.map { |l| rotator.rotate(l) } 
+      end
+
+      def top_left_face_lines_raw
+        rotator = GridGenerator::Rotator.new(angle: Math::PI * 1.6, rotation_point: rotation_point)
+        @top_left_face_lines_raw ||= top_right_face_lines_raw.map { |l| rotator.rotate(l) } 
       end
 
       # for svg
@@ -121,26 +165,22 @@ module GridGenerator
 
       # for svg
       def right_face_lines
-        rotator = GridGenerator::Rotator.new(angle: Math::PI * 0.4, rotation_point: rotation_point)
-        top_right_face_lines_raw.map { |l| rotator.rotate(l) + offset } 
+        right_face_lines_raw.map { |l| l + offset }
       end
 
       # for svg
       def down_face_lines
-        rotator = GridGenerator::Rotator.new(angle: Math::PI * 0.8, rotation_point: rotation_point)
-        top_right_face_lines_raw.map { |l| rotator.rotate(l) + offset } 
+        down_face_lines_raw.map { |l| l + offset }
       end
 
       # for svg
       def left_face_lines
-        rotator = GridGenerator::Rotator.new(angle: Math::PI * 1.2, rotation_point: rotation_point)
-        top_right_face_lines_raw.map { |l| rotator.rotate(l) + offset } 
+        left_face_lines_raw.map { |l| l + offset }
       end
 
       # for svg
       def top_left_face_lines
-        rotator = GridGenerator::Rotator.new(angle: Math::PI * 1.6, rotation_point: rotation_point)
-        top_right_face_lines_raw.map { |l| rotator.rotate(l) + offset } 
+        top_left_face_lines_raw.map { |l| l + offset }
       end
 
       # for svg
@@ -172,6 +212,7 @@ module GridGenerator
         end.compact
       end
 
+      # for svg
       def top_right_face_element_shapes
         top_right_face_elements.each_with_index.map do |element, i|
           GridGenerator::Megaminx::FaceElementFactory.new(
@@ -180,6 +221,58 @@ module GridGenerator
             index: i,
             face_points: top_right_pentagon_points,
             face_lines: top_right_face_lines_raw,
+            face: element
+          ).build unless element == '-'
+        end.compact
+      end
+
+      def right_face_element_shapes
+        right_face_elements.each_with_index.map do |element, i|
+          GridGenerator::Megaminx::FaceElementFactory.new(
+            x: x,
+            y: y,
+            index: i,
+            face_points: right_pentagon_points,
+            face_lines: right_face_lines_raw,
+            face: element
+          ).build unless element == '-'
+        end.compact
+      end
+
+      def down_face_element_shapes
+        down_face_elements.each_with_index.map do |element, i|
+          GridGenerator::Megaminx::FaceElementFactory.new(
+            x: x,
+            y: y,
+            index: i,
+            face_points: down_pentagon_points,
+            face_lines: down_face_lines_raw,
+            face: element
+          ).build unless element == '-'
+        end.compact
+      end
+
+      def left_face_element_shapes
+        left_face_elements.each_with_index.map do |element, i|
+          GridGenerator::Megaminx::FaceElementFactory.new(
+            x: x,
+            y: y,
+            index: i,
+            face_points: left_pentagon_points,
+            face_lines: left_face_lines_raw,
+            face: element
+          ).build unless element == '-'
+        end.compact
+      end
+
+      def top_left_face_element_shapes
+        top_left_face_elements.each_with_index.map do |element, i|
+          GridGenerator::Megaminx::FaceElementFactory.new(
+            x: x,
+            y: y,
+            index: i,
+            face_points: top_left_pentagon_points,
+            face_lines: top_left_face_lines_raw,
             face: element
           ).build unless element == '-'
         end.compact
