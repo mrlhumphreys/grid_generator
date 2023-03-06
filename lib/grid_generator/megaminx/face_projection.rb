@@ -9,10 +9,11 @@ module GridGenerator
     class FaceProjection
       # units 30 - pentagon 90 - megaminx - 150
       # units * 5 
-      def initialize(x:, y:, units:, front_face_elements: "")
+      def initialize(x:, y:, units:, front_face_elements: "", top_right_face_elements: "")
         @x, @y = x, y
         @units = units
         @front_face_elements = front_face_elements.split(',')
+        @top_right_face_elements = top_right_face_elements.split(',')
       end
 
       attr_reader :x, :y, :units, :front_face_elements
@@ -166,6 +167,19 @@ module GridGenerator
             index: i,
             face_points: pentagon_points,
             face_lines: front_face_lines_raw,
+            face: element
+          ).build unless element == '-'
+        end.compact
+      end
+
+      def top_right_face_element_shapes
+        front_face_elements.each_with_index.map do |element, i|
+          GridGenerator::Megaminx::FaceElementFactory.new(
+            x: x,
+            y: y,
+            index: i,
+            face_points: top_right_pentagon_points,
+            face_lines: top_right_face_lines_raw,
             face: element
           ).build unless element == '-'
         end.compact
