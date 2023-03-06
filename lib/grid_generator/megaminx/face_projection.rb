@@ -74,11 +74,11 @@ module GridGenerator
 
       def top_right_pentagon_points
         @top_right_pentagon_points ||= [
-          decagon_points[0],
           decagon_points[1],
           decagon_points[2],
           pentagon_points[1],
-          pentagon_points[0]
+          pentagon_points[0],
+          decagon_points[0],
         ]
       end
 
