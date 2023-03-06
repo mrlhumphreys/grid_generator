@@ -229,7 +229,7 @@ describe GridGenerator::Megaminx::FaceProjection do
 
   describe '#front_face_element_shapes' do
     it 'should generate' do
-      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, front_face_elements: "W,W,-,W,-,W,-,W,-,W,-")
+      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, front_face_elements: "W,R,B,-,-,-,-,-,-,-,-")
       expected = [
         GridGenerator::BaseElement.new(points: [
           Matrix[[217.55282581475768], [154.54915028125265]],
@@ -243,31 +243,13 @@ describe GridGenerator::Megaminx::FaceProjection do
           Matrix[[199.38926261462365], [98.64745084375788]],
           Matrix[[169.99999999999997], [119.99999999999999]],
           Matrix[[140.61073738537635], [98.6474508437579]]
-        ], colour: "#ffffff", opacity: 1),
+        ], colour: "#ff0000", opacity: 1),
         GridGenerator::BaseElement.new(points: [
-          Matrix[[258.167787843871], [141.3525491562421]],
           Matrix[[246.94208842938133], [175.90169943749473]],
-          Matrix[[217.55282581475768], [154.54915028125265]],
-          Matrix[[228.77852522924732], [120.0]]
-        ], colour: "#ffffff", opacity: 1),
-        GridGenerator::BaseElement.new(points: [
-          Matrix[[224.49068960040208], [245.0]],
-          Matrix[[188.16356320013404], [245.0]],
+          Matrix[[235.71638901489172], [210.45084971874735]],
           Matrix[[199.3892626146237], [210.4508497187474]],
-          Matrix[[235.71638901489172], [210.45084971874735]]
-        ], colour: "#ffffff", opacity: 1),
-        GridGenerator::BaseElement.new(points: [
-          Matrix[[115.50931039959795], [245.0]],
-          Matrix[[104.28361098510831], [210.45084971874738]],
-          Matrix[[140.61073738537638], [210.45084971874743]],
-          Matrix[[151.836436799866], [245.0]]
-        ], colour: "#ffffff", opacity: 1),
-        GridGenerator::BaseElement.new(points: [
-          Matrix[[81.83221215612903], [141.35254915624213]],
-          Matrix[[111.22147477075269], [120.00000000000001]],
-          Matrix[[122.44717418524233], [154.5491502812526]],
-          Matrix[[93.05791157061867], [175.90169943749476]]
-        ], colour: "#ffffff", opacity: 1)
+          Matrix[[217.55282581475768], [154.54915028125265]]
+        ], colour: "#0000ff", opacity: 1)
       ]
       assert_equal expected, projection.front_face_element_shapes
     end

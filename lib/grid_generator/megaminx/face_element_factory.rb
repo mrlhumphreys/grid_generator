@@ -42,7 +42,7 @@ module GridGenerator
       end
      
       def edge_points(i)
-        previous_line = face_linex[(i-1)%5]
+        previous_line = face_lines[(i-1)%5]
         this_line = face_lines[i]
         next_line = face_lines[(i+1)%5]
 
