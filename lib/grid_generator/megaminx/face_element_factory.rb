@@ -65,8 +65,8 @@ module GridGenerator
         [
           face_points[i], 
           line_a.b,
-          line_b.a,
-          intersection
+          intersection,
+          line_b.a
         ]
       end
 
