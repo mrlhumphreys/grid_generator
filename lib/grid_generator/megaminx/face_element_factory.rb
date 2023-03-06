@@ -75,7 +75,7 @@ module GridGenerator
           center_points
         else
           if index % 2 == 0
-            edge_points(index / 2) 
+            edge_points((index / 2) - 1)
           else
             corner_points((index - 1) / 2)
           end
