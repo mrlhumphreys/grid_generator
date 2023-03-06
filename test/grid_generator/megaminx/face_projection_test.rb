@@ -229,7 +229,7 @@ describe GridGenerator::Megaminx::FaceProjection do
 
   describe '#front_face_element_shapes' do
     it 'should generate' do
-      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, front_face_elements: "W,R,B,-,-,-,-,-,-,-,-")
+      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, front_face_elements: "W,R,B,-,-,-,-,-,-,-,W")
       expected = [
         GridGenerator::BaseElement.new(points: [
           Matrix[[217.55282581475768], [154.54915028125265]],
@@ -249,7 +249,13 @@ describe GridGenerator::Megaminx::FaceProjection do
           Matrix[[235.71638901489172], [210.45084971874735]],
           Matrix[[199.3892626146237], [210.4508497187474]],
           Matrix[[217.55282581475768], [154.54915028125265]]
-        ], colour: "#0000ff", opacity: 1)
+        ], colour: "#0000ff", opacity: 1),
+        GridGenerator::BaseElement.new(points: [
+          Matrix[[199.38926261462365], [98.64745084375788]], 
+          Matrix[[228.77852522924732], [120.0]], 
+          Matrix[[217.55282581475768], [154.54915028125265]], 
+          Matrix[[169.99999999999997], [119.99999999999999]]
+        ], colour: "#ffffff", opacity: 1)
       ]
       assert_equal expected, projection.front_face_element_shapes
     end

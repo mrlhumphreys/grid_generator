@@ -43,7 +43,7 @@ module GridGenerator
      
       def edge_points(i)
         previous_line = face_lines[(i-1)%5]
-        this_line = face_lines[i]
+        this_line = face_lines[i%5]
         next_line = face_lines[(i+1)%5]
 
         previous_this_point = GridGenerator::Helper.intersection(previous_line, this_line)
