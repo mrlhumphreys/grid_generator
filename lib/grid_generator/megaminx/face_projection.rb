@@ -16,7 +16,7 @@ module GridGenerator
         @top_right_face_elements = top_right_face_elements.split(',')
       end
 
-      attr_reader :x, :y, :units, :front_face_elements
+      attr_reader :x, :y, :units, :front_face_elements, :top_right_face_elements
 
       def offset
         @offset ||= Matrix.column_vector([x, y])
@@ -173,7 +173,7 @@ module GridGenerator
       end
 
       def top_right_face_element_shapes
-        front_face_elements.each_with_index.map do |element, i|
+        top_right_face_elements.each_with_index.map do |element, i|
           GridGenerator::Megaminx::FaceElementFactory.new(
             x: x,
             y: y,

@@ -263,7 +263,7 @@ describe GridGenerator::Megaminx::FaceProjection do
 
   describe '#top_right_face_element_shapes' do
     it 'should generate' do
-      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, front_face_elements: "W,R,B,-,-,-,-,-,-,-,W")
+      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, top_right_face_elements: "W,R,B,-,-,-,-,-,-,-,W")
       expected = [
         GridGenerator::BaseElement.new(points: [
           Matrix[[246.9420884293813], [64.09830056250524]], 
