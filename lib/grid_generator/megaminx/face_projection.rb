@@ -2,30 +2,20 @@ require 'matrix'
 require_relative '../rotator'
 require_relative '../helper'
 require_relative '../line'
+require_relative 'face_element_factory'
 
 module GridGenerator
   module Megaminx
     class FaceProjection
       # units 30 - pentagon 90 - megaminx - 150
       # units * 5 
-      #       *****
-      #        *** 
-      #        ***
-      #        
-      #  ***   ***   ***
-      #  ***   ***   ***
-      # ***** ***** *****
-      #
-      #    ***** *****
-      #     ***   ***
-      #     ***   ***
-      def initialize(x:, y:, units:, elements: [])
+      def initialize(x:, y:, units:, front_face_elements: "")
         @x, @y = x, y
         @units = units
-        @elements = elements
+        @front_face_elements = front_face_elements.split(',')
       end
 
-      attr_reader :x, :y, :units, :elements
+      attr_reader :x, :y, :units, :front_face_elements
 
       def offset
         @offset ||= Matrix.column_vector([x, y])
@@ -87,22 +77,26 @@ module GridGenerator
         ]
       end
 
-      def right_pentagon_points
-        @right_pentagon_points ||= [
-          decagon_points[2],
-          decagon_points[3],
-          decagon_points[4],
-          pentagon_points[2],
-          pentagon_points[1]
-        ]
+      def front_face_lines_raw
+        (0..4).map do |i|
+          a = pentagon_points[i-1] # offset one so first line is top right
+          b = pentagon_points[(i)%5]
+          c = pentagon_points[(i+1)%5]
+          d = pentagon_points[(i+2)%5]
+
+          ab_intervals = GridGenerator::Helper.intervals(a,b,2)
+          cd_intervals = GridGenerator::Helper.intervals(c,d,2)
+
+          GridGenerator::Line.new(a: ab_intervals[-1], b: cd_intervals[0])
+        end
       end
 
       def top_right_face_lines_raw
         (0..4).map do |i| 
-          a = top_right_pentagon_points[i]
-          b = top_right_pentagon_points[(i+1)%5]
-          c = top_right_pentagon_points[(i+2)%5]
-          d = top_right_pentagon_points[(i+3)%5]
+          a = top_right_pentagon_points[i-1] # offset by one so first line is top right
+          b = top_right_pentagon_points[(i)%5]
+          c = top_right_pentagon_points[(i+1)%5]
+          d = top_right_pentagon_points[(i+2)%5]
 
           ab_intervals = GridGenerator::Helper.intervals(a,b,2)
           cd_intervals = GridGenerator::Helper.intervals(c,d,2)
@@ -150,17 +144,7 @@ module GridGenerator
 
       # for svg
       def front_face_lines
-        (0..4).map do |i| 
-          a = pentagon_points[i]
-          b = pentagon_points[(i+1)%5]
-          c = pentagon_points[(i+2)%5]
-          d = pentagon_points[(i+3)%5]
-
-          ab_intervals = GridGenerator::Helper.intervals(a,b,2)
-          cd_intervals = GridGenerator::Helper.intervals(c,d,2)
-
-          GridGenerator::Line.new(a: ab_intervals[-1], b: cd_intervals[0]) + offset
-        end
+        front_face_lines_raw.map { |l| l + offset }
       end
 
       # for svg
@@ -173,6 +157,19 @@ module GridGenerator
         pentagon_points.map { |p| p + offset }.map { |p| "#{p[0,0].round},#{p[1,0].round}" }.join(' ')
       end
 
+      # for svg
+      def front_face_element_shapes
+        front_face_elements.each_with_index.map do |element, i|
+          GridGenerator::Megaminx::FaceElementFactory.new(
+            x: x,
+            y: y,
+            index: i,
+            face_points: pentagon_points,
+            face_lines: front_face_lines_raw,
+            face: element
+          ).build unless element == '-'
+        end.compact
+      end
     end
   end
 end

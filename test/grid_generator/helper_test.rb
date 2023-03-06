@@ -8,7 +8,7 @@ describe GridGenerator::Helper do
       b = Matrix.column_vector([3,3])
       result = GridGenerator::Helper.distance(a, b)
       expected = 2 * Math.sqrt(2)
-      assert_equal expected, result 
+      assert_equal expected, result
     end
   end
 
@@ -21,6 +21,23 @@ describe GridGenerator::Helper do
         Matrix.column_vector([2,2]),
         Matrix.column_vector([3,3])
       ]
+      assert_equal expected, result
+    end
+  end
+
+  describe '.intersection' do
+    it 'should return the intersection point of two lines' do
+      a = Matrix.column_vector([0,0])
+      b = Matrix.column_vector([6,6])
+      c = Matrix.column_vector([0,6])
+      d = Matrix.column_vector([6,0])
+
+      line_a = GridGenerator::Line.new(a: a, b: b)
+      line_b = GridGenerator::Line.new(a: c, b: d)
+
+      result = GridGenerator::Helper.intersection(line_a, line_b)
+      expected = Matrix.column_vector([3.0,3.0])
+
       assert_equal expected, result
     end
   end
