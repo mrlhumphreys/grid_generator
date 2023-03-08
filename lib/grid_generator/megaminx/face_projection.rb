@@ -99,12 +99,8 @@ module GridGenerator
 
       def outside_pentagon_points
         @outside_pentagon_points ||= (0..4).map do |i|
-          if i == 0
-            top_right_pentagon_points 
-          else
-            rotator = GridGenerator::Rotator.new(angle: Math::PI * i * 0.4, rotation_point: rotation_point)
-            top_right_pentagon_points.map { |p| rotator.rotate(p) } 
-          end
+          rotator = GridGenerator::Rotator.new(angle: Math::PI * i * 0.4, rotation_point: rotation_point)
+          top_right_pentagon_points.map { |p| rotator.rotate(p) } 
         end
       end
 
@@ -138,12 +134,8 @@ module GridGenerator
 
       def outside_face_lines_raw
         @outside_face_lines_raw ||= (0..4).map do |i|
-          if i == 0
-            top_right_face_lines_raw
-          else
-            rotator = GridGenerator::Rotator.new(angle: Math::PI * i * 0.4, rotation_point: rotation_point)
-            top_right_face_lines_raw.map { |l| rotator.rotate(l) } 
-          end
+          rotator = GridGenerator::Rotator.new(angle: Math::PI * i * 0.4, rotation_point: rotation_point)
+          top_right_face_lines_raw.map { |l| rotator.rotate(l) } 
         end
       end
 
@@ -154,31 +146,31 @@ module GridGenerator
 
       # for svg
       def decagon_points_string
-        decagon_points.map { |p| p + offset }.map { |p| "#{p[0,0].round},#{p[1,0].round}" }.join(' ')
+        decagon_points.map { |p| offset_rotator.rotate(p) + offset }.map { |p| "#{p[0,0].round},#{p[1,0].round}" }.join(' ')
       end
 
       # for svg
       def pentagon_points_string
-        pentagon_points.map { |p| p + offset }.map { |p| "#{p[0,0].round},#{p[1,0].round}" }.join(' ')
+        pentagon_points.map { |p| offset_rotator.rotate(p) + offset }.map { |p| "#{p[0,0].round},#{p[1,0].round}" }.join(' ')
       end
 
       # for svg
       def connecting_lines
         pentagon_points.each_with_index.map do |p, i|
           d = decagon_points[i*2]
-          GridGenerator::Line.new(a: p, b: d) + offset
+          offset_rotator.rotate(GridGenerator::Line.new(a: p, b: d)) + offset
         end
       end
 
       # for svg
       def front_face_lines
-        front_face_lines_raw.map { |l| l + offset }
+        front_face_lines_raw.map { |l| offset_rotator.rotate(l) + offset }
       end
 
       # for svg
       def outside_face_lines
         outside_face_lines_raw.map do |face_lines|
-          face_lines.map { |l| l + offset }
+          face_lines.map { |l| offset_rotator.rotate(l) + offset }
         end
       end
 
@@ -191,7 +183,8 @@ module GridGenerator
             index: i,
             face_points: pentagon_points,
             face_lines: front_face_lines_raw,
-            face: element
+            face: element,
+            rotator: offset_rotator
           ).build unless element == '-'
         end.compact
       end
@@ -206,7 +199,8 @@ module GridGenerator
               index: element_index,
               face_points: outside_pentagon_points[face_index],
               face_lines: outside_face_lines_raw[face_index],
-              face: element
+              face: element,
+              rotator: offset_rotator
             ).build unless element == '-'
           end.compact
         end

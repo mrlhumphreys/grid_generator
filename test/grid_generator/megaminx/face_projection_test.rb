@@ -9,12 +9,24 @@ describe GridGenerator::Megaminx::FaceProjection do
       expected = "170,20 258,49 313,124 313,216 258,291 170,320 82,291 27,216 27,124 82,49"
       assert_equal expected, projection.decagon_points_string
     end
+    
+    it 'should generate with rotation offset' do
+      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, rotation_offset: Math::PI * 0.2)
+      expected = "258,49 313,124 313,216 258,291 170,320 82,291 27,216 27,124 82,49 170,20"
+      assert_equal expected, projection.decagon_points_string
+    end
   end
 
   describe '#pentagon_points_string' do
     it 'should generate' do
       projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30)
       expected = "170,77 258,141 224,245 116,245 82,141"
+      assert_equal expected, projection.pentagon_points_string
+    end
+
+    it 'should generate with rotation offset' do
+      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, rotation_offset: Math::PI * 0.2)
+      expected = "224,95 258,199 170,263 82,199 116,95"
       assert_equal expected, projection.pentagon_points_string
     end
   end
@@ -42,6 +54,33 @@ describe GridGenerator::Megaminx::FaceProjection do
         GridGenerator::Line.new(
           a: Matrix.column_vector([81.83221215612903, 141.35254915624213]), 
           b: Matrix.column_vector([27.341522555726954, 123.64745084375792])
+        )
+      ] 
+      assert_equal expected, projection.connecting_lines
+    end
+
+    it 'should generate with rotation offset' do
+      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, rotation_offset: Math::PI * 0.2)
+      expected = [
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([224.49068960040205, 95.0]),
+          b: Matrix.column_vector([258.167787843871, 48.64745084375788])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([258.167787843871, 198.64745084375787]), 
+          b: Matrix.column_vector([312.658477444273, 216.35254915624208])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([170.0, 262.7050983124842]), 
+          b: Matrix.column_vector([170.00000000000003, 320.0])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([81.83221215612905, 198.6474508437579]), 
+          b: Matrix.column_vector([27.341522555726982, 216.3525491562421])
+        ), 
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([115.50931039959792, 95.00000000000001]), 
+          b: Matrix.column_vector([81.83221215612899, 48.64745084375791])
         )
       ] 
       assert_equal expected, projection.connecting_lines
@@ -166,6 +205,120 @@ describe GridGenerator::Megaminx::FaceProjection do
 
       assert_equal expected, projection.outside_face_lines
     end
+
+    it 'should generate with rotation offset' do
+      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, rotation_offset: Math::PI * 0.2)
+      expected = [
+        [
+          GridGenerator::Line.new(
+            a: Matrix[[294.49491424413907], [98.64745084375788]], 
+            b: Matrix[[294.49491424413895], [210.45084971874735]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[312.658477444273], [185.45084971874735]], 
+            b: Matrix[[246.94208842938133], [164.09830056250527]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[276.331351044005], [204.54915028125262]], 
+            b: Matrix[[235.71638901489172], [79.54915028125262]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[235.7163890148917], [129.54915028125262]], 
+            b: Matrix[[276.331351044005], [73.64745084375788]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[246.94208842938133], [64.09830056250524]], 
+            b: Matrix[[312.658477444273], [154.54915028125262]]
+          )
+        ], [
+          GridGenerator::Line.new(
+            a: Matrix[[276.33135104400503], [266.3525491562421]], 
+            b: Matrix[[170.00000000000003], [300.9016994374947]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[199.38926261462368], [310.45084971874735]], 
+            b: Matrix[[199.38926261462368], [241.35254915624213]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[170.00000000000003], [281.8033988749895]], 
+            b: Matrix[[276.331351044005], [204.54915028125262]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[228.77852522924732], [220.0]], 
+            b: Matrix[[294.49491424413907], [241.3525491562421]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[294.494914244139], [210.45084971874735]], 
+            b: Matrix[[228.77852522924732], [300.9016994374947]]
+          )
+        ], [
+          GridGenerator::Line.new(
+            a: Matrix[[111.22147477075272], [300.90169943749476]], 
+            b: Matrix[[45.505085755861046], [210.4508497187474]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[45.505085755861074], [241.35254915624213]], 
+            b: Matrix[[111.22147477075268], [220.0]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[63.668648955995025], [204.54915028125265]], 
+            b: Matrix[[170.00000000000003], [281.8033988749895]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[140.61073738537635], [241.3525491562421]], 
+            b: Matrix[[140.6107373853764], [310.45084971874735]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[170.0], [300.90169943749476]], 
+            b: Matrix[[63.66864895599505], [266.3525491562421]]
+          )
+        ], [
+          GridGenerator::Line.new(
+            a: Matrix[[27.341522555726954], [154.54915028125265]], 
+            b: Matrix[[93.05791157061867], [64.09830056250533]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[63.668648955995025], [73.64745084375795]], 
+            b: Matrix[[104.28361098510828], [129.54915028125265]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[104.2836109851083], [79.54915028125266]], 
+            b: Matrix[[63.66864895599501], [204.54915028125265]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[93.05791157061869], [164.09830056250527]], 
+            b: Matrix[[27.341522555726954], [185.4508497187474]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[45.50508575586099], [210.45084971874738]], 
+            b: Matrix[[45.505085755860975], [98.64745084375792]]
+          )
+        ], [
+          GridGenerator::Line.new(
+            a: Matrix[[140.6107373853763], [29.549150281252622]], 
+            b: Matrix[[246.94208842938127], [64.09830056250526]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[228.77852522924724], [39.09830056250527]], 
+            b: Matrix[[188.163563200134], [94.99999999999999]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[235.71638901489166], [79.54915028125262]], 
+            b: Matrix[[104.28361098510827], [79.54915028125264]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[151.83643679986596], [95.00000000000001]], 
+            b: Matrix[[111.22147477075265], [39.09830056250527]]
+          ),
+          GridGenerator::Line.new(
+            a: Matrix[[93.05791157061863], [64.09830056250527]], 
+            b: Matrix[[199.3892626146236], [29.54915028125265]]
+          )
+        ]
+      ]
+
+      assert_equal expected, projection.outside_face_lines
+    end
   end
 
   describe '#front_face_lines' do
@@ -191,6 +344,33 @@ describe GridGenerator::Megaminx::FaceProjection do
         GridGenerator::Line.new(
           a: Matrix.column_vector([93.05791157061867, 175.90169943749476]), 
           b: Matrix.column_vector([199.38926261462365, 98.64745084375788])
+        )
+      ]
+      assert_equal expected, projection.front_face_lines
+    end
+
+    it 'should generate with rotation' do
+      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, rotation_offset: Math::PI * 0.2)
+      expected = [
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([188.16356320013404, 95.00000000000001]),
+          b: Matrix.column_vector([228.77852522924732, 220.0])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([246.94208842938133, 164.09830056250527]), 
+          b: Matrix.column_vector([140.61073738537635, 241.3525491562421])
+        ), 
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([199.38926261462368, 241.3525491562421]), 
+          b: Matrix.column_vector([93.05791157061867, 164.09830056250527])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([111.2214747707527, 220.0]), 
+          b: Matrix.column_vector([151.83643679986596, 95.0])
+        ),
+        GridGenerator::Line.new(
+          a: Matrix.column_vector([104.2836109851083, 129.54915028125265]), 
+          b: Matrix.column_vector([235.7163890148917, 129.54915028125262])
         )
       ]
       assert_equal expected, projection.front_face_lines
@@ -225,6 +405,38 @@ describe GridGenerator::Megaminx::FaceProjection do
           Matrix[[140.61073738537635], [98.6474508437579]], 
           Matrix[[169.99999999999997], [119.99999999999999]], 
           Matrix[[122.44717418524233], [154.5491502812526]]
+        ], colour: "#ffffff", opacity: 1)
+      ]
+      assert_equal expected, projection.front_face_element_shapes
+    end
+
+    it 'should generate with rotation offset' do
+      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, front_face_elements: "W,R,B,-,-,-,-,-,-,-,W", rotation_offset: Math::PI * 0.2)
+      expected = [
+        GridGenerator::BaseElement.new(points: [
+          Matrix[[217.55282581475768], [185.4508497187474]], 
+          Matrix[[170.00000000000003], [220.00000000000006]], 
+          Matrix[[122.44717418524232], [185.45084971874743]], 
+          Matrix[[140.61073738537638], [129.5491502812526]], 
+          Matrix[[199.38926261462365], [129.5491502812526]]
+        ], colour: "#ffffff", opacity: 1),
+        GridGenerator::BaseElement.new(points: [
+          Matrix[[224.49068960040205], [95.0]], 
+          Matrix[[235.7163890148917], [129.54915028125262]], 
+          Matrix[[199.38926261462365], [129.5491502812526]], 
+          Matrix[[188.16356320013404], [95.00000000000001]]
+        ], colour: "#ff0000", opacity: 1),
+        GridGenerator::BaseElement.new(points: [
+          Matrix[[235.7163890148917], [129.54915028125262]], 
+          Matrix[[246.94208842938133], [164.09830056250527]], 
+          Matrix[[217.55282581475768], [185.4508497187474]], 
+          Matrix[[199.38926261462365], [129.5491502812526]]
+        ], colour: "#0000ff", opacity: 1),
+        GridGenerator::BaseElement.new(points: [
+          Matrix[[151.83643679986596], [95.0]], 
+          Matrix[[188.16356320013404], [95.00000000000001]], 
+          Matrix[[199.38926261462365], [129.5491502812526]], 
+          Matrix[[140.61073738537638], [129.5491502812526]]
         ], colour: "#ffffff", opacity: 1)
       ]
       assert_equal expected, projection.front_face_element_shapes
@@ -371,6 +583,145 @@ describe GridGenerator::Megaminx::FaceProjection do
           ], colour: "#ffffff", opacity: 1)
         ]
       ]
+      assert_equal expected, projection.outside_face_element_shapes
+    end
+
+    it 'should generate with rotaiton offset' do
+      projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, top_right_face_elements: "W,R,B,-,-,-,-,-,-,-,W", right_face_elements: "W,R,B,-,-,-,-,-,-,-,W", down_face_elements: "W,R,B,-,-,-,-,-,-,-,W", left_face_elements: "W,R,B,-,-,-,-,-,-,-,W", top_left_face_elements: "W,R,B,-,-,-,-,-,-,-,W", rotation_offset: Math::PI * 0.2)
+      expected = [
+        [
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[294.49491424413895], [179.5491502812526]], 
+            Matrix[[265.10565162951536], [169.99999999999997]], 
+            Matrix[[246.94208842938133], [114.09830056250523]], 
+            Matrix[[265.10565162951536], [89.09830056250523]], 
+            Matrix[[294.494914244139], [129.5491502812526]]
+          ], colour: "#ffffff", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[312.65847744427305], [123.64745084375787]], 
+            Matrix[[312.658477444273], [154.54915028125262]], 
+            Matrix[[294.494914244139], [129.5491502812526]], 
+            Matrix[[294.49491424413907], [98.64745084375788]]
+          ], colour: "#ff0000", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[312.658477444273], [154.54915028125262]], 
+            Matrix[[312.658477444273], [185.45084971874735]], 
+            Matrix[[294.49491424413895], [179.5491502812526]], 
+            Matrix[[294.494914244139], [129.5491502812526]]
+          ], colour: "#0000ff", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[276.331351044005], [73.64745084375788]], 
+            Matrix[[294.49491424413907], [98.64745084375788]], 
+            Matrix[[294.494914244139], [129.5491502812526]], 
+            Matrix[[265.10565162951536], [89.09830056250523]]
+          ], colour: "#ffffff", opacity: 1)
+        ], [
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[199.38926261462368], [291.35254915624216]], 
+            Matrix[[199.38926261462365], [260.4508497187474]], 
+            Matrix[[246.94208842938133], [225.90169943749478]], 
+            Matrix[[276.3313510440049], [235.4508497187474]], 
+            Matrix[[246.9420884293812], [275.90169943749487]]
+          ], colour: "#ffffff", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[258.167787843871], [291.3525491562421]], 
+            Matrix[[228.77852522924732], [300.9016994374947]], 
+            Matrix[[246.9420884293812], [275.90169943749487]], 
+            Matrix[[276.33135104400503], [266.3525491562421]]
+          ], colour: "#ff0000", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[228.77852522924732], [300.9016994374947]], 
+            Matrix[[199.38926261462368], [310.45084971874735]], 
+            Matrix[[199.38926261462368], [291.35254915624216]], 
+            Matrix[[246.9420884293812], [275.90169943749487]]
+          ], colour: "#0000ff", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[294.49491424413907], [241.3525491562421]], 
+            Matrix[[276.33135104400503], [266.3525491562421]], 
+            Matrix[[246.9420884293812], [275.90169943749487]], 
+            Matrix[[276.3313510440049], [235.4508497187474]]
+          ], colour: "#ffffff", opacity: 1)
+        ], [
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[63.66864895599508], [235.45084971874735]], 
+            Matrix[[93.05791157061864], [225.9016994374947]], 
+            Matrix[[140.61073738537638], [260.45084971874735]], 
+            Matrix[[140.6107373853764], [291.35254915624216]], 
+            Matrix[[93.05791157061877], [275.9016994374948]]
+          ], colour: "#ffffff", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[81.83221215612906], [291.35254915624216]], 
+            Matrix[[63.66864895599505], [266.3525491562421]], 
+            Matrix[[93.05791157061877], [275.9016994374948]], 
+            Matrix[[111.22147477075272], [300.90169943749476]]
+          ], colour: "#ff0000", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[63.66864895599505], [266.3525491562421]], 
+            Matrix[[45.505085755861074], [241.35254915624213]], 
+            Matrix[[63.66864895599508], [235.45084971874735]], 
+            Matrix[[93.05791157061877], [275.9016994374948]]
+          ], colour: "#0000ff", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[140.6107373853764], [310.45084971874735]], 
+            Matrix[[111.22147477075272], [300.90169943749476]], 
+            Matrix[[93.05791157061877], [275.9016994374948]], 
+            Matrix[[140.6107373853764], [291.35254915624216]]
+          ], colour: "#ffffff", opacity: 1)
+        ], [
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[74.89434837048466], [89.09830056250529]], 
+            Matrix[[93.05791157061867], [114.0983005625053]], 
+            Matrix[[74.89434837048464], [170.00000000000006]], 
+            Matrix[[45.50508575586099], [179.54915028125265]], 
+            Matrix[[45.505085755860975], [129.54915028125265]]
+          ], colour: "#ffffff", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[27.341522555726925], [123.6474508437579]], 
+            Matrix[[45.505085755860975], [98.64745084375792]], 
+            Matrix[[45.505085755860975], [129.54915028125265]], 
+            Matrix[[27.341522555726954], [154.54915028125265]]
+          ], colour: "#ff0000", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[45.505085755860975], [98.64745084375792]], 
+            Matrix[[63.668648955995025], [73.64745084375795]], 
+            Matrix[[74.89434837048466], [89.09830056250529]], 
+            Matrix[[45.505085755860975], [129.54915028125265]]
+          ], colour: "#0000ff", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[27.341522555726954], [185.4508497187474]], 
+            Matrix[[27.341522555726954], [154.54915028125265]], 
+            Matrix[[45.505085755860975], [129.54915028125265]], 
+            Matrix[[45.50508575586099], [179.54915028125265]]
+          ], colour: "#ffffff", opacity: 1)
+        ], [
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[217.55282581475763], [54.549150281252636]], 
+            Matrix[[199.38926261462365], [79.5491502812526]], 
+            Matrix[[140.6107373853763], [79.54915028125261]], 
+            Matrix[[122.44717418524229], [54.54915028125262]], 
+            Matrix[[170.0], [39.098300562505244]]
+          ], colour: "#ffffff", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[169.99999999999994], [19.99999999999997]], 
+            Matrix[[199.3892626146236], [29.54915028125265]], 
+            Matrix[[170.0], [39.098300562505244]], 
+            Matrix[[140.6107373853763], [29.549150281252622]]
+          ], colour: "#ff0000", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[199.3892626146236], [29.54915028125265]], 
+            Matrix[[228.77852522924724], [39.09830056250527]], 
+            Matrix[[217.55282581475763], [54.549150281252636]], 
+            Matrix[[170.0], [39.098300562505244]]
+          ], colour: "#0000ff", opacity: 1),
+          GridGenerator::BaseElement.new(points: [
+            Matrix[[111.22147477075265], [39.09830056250527]], 
+            Matrix[[140.6107373853763], [29.549150281252622]], 
+            Matrix[[170.0], [39.098300562505244]], 
+            Matrix[[122.44717418524229], [54.54915028125262]]
+          ], colour: "#ffffff", opacity: 1)
+        ] 
+      ]
+
       assert_equal expected, projection.outside_face_element_shapes
     end
   end

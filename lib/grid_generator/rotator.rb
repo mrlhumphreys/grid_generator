@@ -13,6 +13,7 @@ module GridGenerator
 
     # subtract rotation point to move point towards 0,0, rotate, then add to move back
     def rotate(obj)
+      return obj if angle == 0 
       case obj
       when Matrix
         (matrix * (obj - rotation_point)) + rotation_point

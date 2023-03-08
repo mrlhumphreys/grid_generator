@@ -3,7 +3,7 @@ require_relative '../face_parser'
 module GridGenerator
   module Megaminx
     class FaceElementFactory
-      def initialize(x:, y:, index:, face_points: , face_lines:, face:)
+      def initialize(x:, y:, index:, face_points: , face_lines:, face:, rotator: )
         @x, @y = x, y
         @index = index
         @face_points = face_points
@@ -11,9 +11,10 @@ module GridGenerator
         face_attr = FaceParser.new(face).parse
         @colour = face_attr && face_attr[:colour]
         @opacity = face_attr && face_attr[:opacity]
+        @rotator = rotator 
       end
 
-      attr_reader :x, :y, :index, :face_points, :face_lines, :colour, :opacity 
+      attr_reader :x, :y, :index, :face_points, :face_lines, :colour, :opacity, :rotator 
 
       def offset
         Matrix.column_vector([x, y])
@@ -81,7 +82,7 @@ module GridGenerator
           end
         end
 
-        all_points.map { |p| p + offset }
+        all_points.map { |p| rotator.rotate(p) + offset }
       end
 
       def build
