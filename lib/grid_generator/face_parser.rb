@@ -9,7 +9,7 @@ module GridGenerator
       'o' => '#ffb000',
       'gr' => '#808080',
       'br' => '#804000',
-      's' => '#8080ff',
+      's' => '#8080ff', # change to sand colour
       'l' => '#80ff80',
       'p' => '#800080', 
       'pi' => '#ff8080',
