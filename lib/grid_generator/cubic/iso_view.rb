@@ -29,6 +29,13 @@ module GridGenerator
           "right" => right.as_json
         }
       end
+
+      def to_svg
+        output = top.to_svg
+        output += front.to_svg
+        output += right.to_svg
+        output
+      end
     end
   end
 end

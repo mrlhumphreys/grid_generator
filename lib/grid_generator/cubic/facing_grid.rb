@@ -6,6 +6,11 @@ require_relative 'facing_square_factory'
 module GridGenerator
   module Cubic
     class FacingGrid
+      COLOURS = {
+        fill: "#d0d0d0",
+        stroke: "#404040"
+      }
+
       def initialize(x:, y:, units:, squares: )
         @x, @y = x, y
         @units = units
@@ -115,6 +120,24 @@ module GridGenerator
           "columns" => columns,
           "element_shapes" => element_shapes.map(&:as_json)
         }
+      end
+
+      def to_svg
+        output = "<polygon points=\"#{points_string}\" style=\"fill:#{COLOURS[:fill]};stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
+ 
+        for row in rows do
+          output += "<line x1=\"#{row.x1}\" y1=\"#{row.y1}\" x2=\"#{row.x2}\" y2=\"#{row.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
+        end
+ 
+        for col in columns do
+          output += "<line x1=\"#{col.x1}\" y1=\"#{col.y1}\" x2=\"#{col.x2}\" y2=\"#{col.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
+        end
+ 
+        for shape in element_shapes do
+          output += "<polygon points=\"#{shape.points_string}\" style=\"fill:#{shape.colour};stroke:#{COLOURS[:stroke]};stroke-width:1;opacity:#{shape.opacity}\" />"
+        end
+
+        output
       end
     end
   end

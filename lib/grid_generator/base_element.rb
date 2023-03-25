@@ -1,5 +1,10 @@
 module GridGenerator
   class BaseElement
+    COLOURS = {
+      fill: "#d0d0d0",
+      stroke: "#404040"
+    }
+
     def initialize(points:, colour: , opacity: 1)
       @points = points
       @colour = colour
@@ -25,6 +30,10 @@ module GridGenerator
         "colour" => colour,
         "opacity" => opacity
       }
+    end
+
+    def to_svg
+      "<polygon points=\"#{points_string}}\" style=\"fill:#{colour};stroke:#{COLOURS[:stroke]};stroke-width:1;opacity:#{opacity}\" />"
     end
   end
 end

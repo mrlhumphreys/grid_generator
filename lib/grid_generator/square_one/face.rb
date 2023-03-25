@@ -5,6 +5,11 @@ require_relative 'element_factory'
 module GridGenerator
   module SquareOne
     class Face 
+      COLOURS = {
+        fill: "#d0d0d0",
+        stroke: "#404040"
+      }
+
       def initialize(x:, y: , units: , elements:, axis_direction: :forward)
         @x, @y = x, y
         @units = units
@@ -87,6 +92,20 @@ module GridGenerator
         {
           "element_shapes" => element_shapes.map(&:as_json)
         }
+      end
+
+      def to_svg
+        output = ""
+        element_shapes.each do |element|
+          if element.opacity == 0.4
+            output += "<polygon points=\"#{ element.points_string }\" style=\"fill:#{ COLOURS[:fill] };stroke:#{ COLOURS[:stroke] };stroke-width:1;opacity:1;]\" />"
+          end
+          output += "<polygon points=\"#{ element.points_string }\" style=\"fill:#{ element.colour };stroke:#{ COLOURS[:stroke] };stroke-width:1;opacity:#{ element.opacity };\" />"
+         end
+
+        output += "<line x1=\"#{ axis.x1 }\" y1=\"#{ axis.y1 }\" x2=\"#{ axis.x2 }\" y2=\"#{ axis.y2 }\" style=\"stroke:#{ COLOURS[:stroke] };stroke-width:5\" />"
+
+        output
       end
     end
   end

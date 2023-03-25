@@ -7,6 +7,10 @@ require_relative 'face_element_factory'
 module GridGenerator
   module Megaminx
     class FaceProjection
+      COLOURS = {
+        fill: "#d0d0d0",
+        stroke: "#404040"
+      }
       # units 30 - pentagon 90 - megaminx - 150
       # units * 5 
       def initialize(x:, y:, units:, front_face_elements: "", top_right_face_elements: "", right_face_elements: "", down_face_elements: "", left_face_elements: "", top_left_face_elements: "", rotation_offset: 0)
@@ -204,6 +208,37 @@ module GridGenerator
             ).build unless element == '-'
           end.compact
         end
+      end
+
+      def to_svg
+        output = "<polygon points=\"#{ decagon_points_string }\" style=\"fill:#{ COLOURS[:fill] };stroke:#{ COLOURS[:stroke] };stroke-width:1\" />"
+        output += "<polygon points=\"#{ pentagon_points_string }\" style=\"fill:none;stroke:#{ COLOURS[:stroke] };stroke-width:1\" />"
+
+        for line in connecting_lines do
+          output += "<line x1=\"#{line.x1}\" y1=\"#{line.y1}\" x2=\"#{line.x2}\" y2=\"#{line.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
+        end
+
+        for line in front_face_lines do
+          output += "<line x1=\"#{line.x1}\" y1=\"#{line.y1}\" x2=\"#{line.x2}\" y2=\"#{line.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
+        end
+
+        for face in outside_face_lines do
+          for line in face do
+            output += "<line x1=\"#{line.x1}\" y1=\"#{line.y1}\" x2=\"#{line.x2}\" y2=\"#{line.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
+          end
+        end
+
+        for shape in front_face_element_shapes do
+          output += "<polygon points=\"#{shape.points_string}\" style=\"fill:#{shape.colour};stroke:#{COLOURS[:stroke]};stroke-width:1;opacity:#{shape.opacity}\" />"
+        end
+
+        for face in outside_face_element_shapes do
+          for shape in face do
+            output += "<polygon points=\"#{shape.points_string}\" style=\"fill:#{shape.colour};stroke:#{COLOURS[:stroke]};stroke-width:1;opacity:#{shape.opacity}\" />"
+          end
+        end
+
+        output
       end
     end
   end

@@ -9,6 +9,11 @@ module GridGenerator
     # * * *
     # * * * * * 
     class Face
+      COLOURS = {
+        fill: "#d0d0d0",
+        stroke: "#404040"
+      }
+
       def initialize(x:, y:, units:, elements:, vertical_scale: 1, rotation_angle: 0)
         @x, @y = x, y
         @units = units
@@ -189,6 +194,28 @@ module GridGenerator
             ).build unless col == '-' 
           end
         end.flatten.compact
+      end
+
+      def to_svg
+        output = "<polygon points=\"#{ points_string }\" style=\"fill:#{ COLOURS[:fill] };stroke:#{ COLOURS[:stroke] };stroke-width:1\" />"
+
+        for line in vertical_lines do
+          output += "<line x1=\"#{line.x1}\" y1=\"#{line.y1}\" x2=\"#{line.x2}\" y2=\"#{line.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
+        end
+
+        for line in diagonal_up_lines do
+          output += "<line x1=\"#{line.x1}\" y1=\"#{line.y1}\" x2=\"#{line.x2}\" y2=\"#{line.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
+        end
+
+        for line in diagonal_down_lines do
+          output += "<line x1=\"#{line.x1}\" y1=\"#{line.y1}\" x2=\"#{line.x2}\" y2=\"#{line.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
+        end
+
+        element_shapes.map do |shape|
+          output += "<polygon points=\"#{ shape.points_string }\" style=\"fill:#{ shape.colour };stroke:#{ COLOURS[:stroke] };stroke-width:1;opacity:#{ shape.opacity }\" />"
+        end
+
+        output
       end
     end
   end
