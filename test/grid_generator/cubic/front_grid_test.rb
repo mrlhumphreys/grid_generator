@@ -7,19 +7,19 @@ describe GridGenerator::Cubic::FrontGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::FrontGrid.new(x: 20, y: 50, units: 20, squares: "y,y,y,y,y\\n-,-,-,-,-\\n-,-,-,-,-\\ny,y,y,y,y")
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([20, 70]), 
           b: Matrix.column_vector([120, 120])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([20, 90]), 
           b: Matrix.column_vector([120, 140])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([20, 110]), 
           b: Matrix.column_vector([120, 160])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([20, 130]), 
           b: Matrix.column_vector([120, 180])
         ) 
@@ -32,23 +32,23 @@ describe GridGenerator::Cubic::FrontGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::FrontGrid.new(x: 20, y: 50, units: 20, squares: "y,y,y,y,y\\n-,-,-,-,-\\n-,-,-,-,-\\ny,y,y,y,y") 
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([40, 60]), 
           b: Matrix.column_vector([40, 140])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([60, 70]), 
           b: Matrix.column_vector([60, 150])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([80, 80]),
           b: Matrix.column_vector([80, 160])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([100, 90]), 
           b: Matrix.column_vector([100, 170])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([120, 100]), 
           b: Matrix.column_vector([120, 180])
         )

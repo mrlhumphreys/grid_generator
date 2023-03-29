@@ -1,4 +1,4 @@
-require_relative '../line'
+require_relative '../base_line'
 require_relative '../square_one_face_parser'
 require_relative 'element_factory'
 
@@ -57,7 +57,7 @@ module GridGenerator
           y+face_size
         ])
 
-        GridGenerator::Line.new(a: a, b: b) 
+        GridGenerator::BaseLine.new(a: a, b: b) 
       end
   
       def back_axis
@@ -71,7 +71,7 @@ module GridGenerator
           y+face_size
         ])
 
-        GridGenerator::Line.new(a: a, b: b) 
+        GridGenerator::BaseLine.new(a: a, b: b) 
       end
   
       def element_shapes

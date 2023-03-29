@@ -1,5 +1,5 @@
 module GridGenerator
-  class Line
+  class BaseLine
     COLOURS = {
       fill: "#d0d0d0",
       stroke: "#404040"

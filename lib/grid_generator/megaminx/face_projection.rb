@@ -3,7 +3,7 @@ require_relative '../svg/polygon'
 require_relative '../svg/style'
 require_relative '../rotator'
 require_relative '../helper'
-require_relative '../line'
+require_relative '../base_line'
 require_relative 'face_element_factory'
 
 module GridGenerator
@@ -120,7 +120,7 @@ module GridGenerator
           ab_intervals = GridGenerator::Helper.intervals(a,b,2)
           cd_intervals = GridGenerator::Helper.intervals(c,d,2)
 
-          GridGenerator::Line.new(a: ab_intervals[-1], b: cd_intervals[0])
+          GridGenerator::BaseLine.new(a: ab_intervals[-1], b: cd_intervals[0])
         end
       end
 
@@ -134,7 +134,7 @@ module GridGenerator
           ab_intervals = GridGenerator::Helper.intervals(a,b,2)
           cd_intervals = GridGenerator::Helper.intervals(c,d,2)
 
-          GridGenerator::Line.new(a: ab_intervals[-1], b: cd_intervals[0])
+          GridGenerator::BaseLine.new(a: ab_intervals[-1], b: cd_intervals[0])
         end
       end
 
@@ -164,7 +164,7 @@ module GridGenerator
       def connecting_lines
         pentagon_points.each_with_index.map do |p, i|
           d = decagon_points[i*2]
-          offset_rotator.rotate(GridGenerator::Line.new(a: p, b: d)) + offset
+          offset_rotator.rotate(GridGenerator::BaseLine.new(a: p, b: d)) + offset
         end
       end
 

@@ -1,4 +1,4 @@
-require_relative '../line'
+require_relative '../base_line'
 require_relative 'skewb_grid'
 require_relative 'left_element_factory'
 
@@ -30,7 +30,7 @@ module GridGenerator
             y + (3*i+1)*units
           ])
 
-          GridGenerator::Line.new(a: a, b: b) 
+          GridGenerator::BaseLine.new(a: a, b: b) 
         end
       end
   
@@ -46,7 +46,7 @@ module GridGenerator
             y + (-1*i+5)*units
           ])
 
-          GridGenerator::Line.new(a: a, b: b) 
+          GridGenerator::BaseLine.new(a: a, b: b) 
         end
       end
     end

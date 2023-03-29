@@ -32,8 +32,8 @@ describe GridGenerator::Helper do
       c = Matrix.column_vector([0,6])
       d = Matrix.column_vector([6,0])
 
-      line_a = GridGenerator::Line.new(a: a, b: b)
-      line_b = GridGenerator::Line.new(a: c, b: d)
+      line_a = GridGenerator::BaseLine.new(a: a, b: b)
+      line_b = GridGenerator::BaseLine.new(a: c, b: d)
 
       result = GridGenerator::Helper.intersection(line_a, line_b)
       expected = Matrix.column_vector([3.0,3.0])

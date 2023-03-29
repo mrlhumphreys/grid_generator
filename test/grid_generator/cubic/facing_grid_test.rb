@@ -15,11 +15,11 @@ describe GridGenerator::Cubic::FacingGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::FacingGrid.new(x: 20, y: 20, units: 30, squares: "Y,Y\\nY,Y")
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([20, 50]), 
           b: Matrix.column_vector([80, 50])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([20, 80]), 
           b: Matrix.column_vector([80, 80])
         )
@@ -32,11 +32,11 @@ describe GridGenerator::Cubic::FacingGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::FacingGrid.new(x: 20, y: 20, units: 30, squares: "Y,Y\\nY,Y")
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([50, 20]), 
           b: Matrix.column_vector([50, 80])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([80, 20]), 
           b: Matrix.column_vector([80, 80])
         )

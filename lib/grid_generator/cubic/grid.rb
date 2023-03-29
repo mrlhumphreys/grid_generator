@@ -1,5 +1,5 @@
 require 'matrix'
-require_relative '../line'
+require_relative '../base_line'
 
 module GridGenerator
   module Cubic
@@ -108,7 +108,7 @@ module GridGenerator
             row_line_end(i+1)[1,0]
           ])
 
-          GridGenerator::Line.new(a: a, b: b)
+          GridGenerator::BaseLine.new(a: a, b: b)
         end
       end
   
@@ -124,7 +124,7 @@ module GridGenerator
             column_line_end(i+1)[1,0]
           ])
 
-          GridGenerator::Line.new(a: a, b: b)
+          GridGenerator::BaseLine.new(a: a, b: b)
         end
       end
   

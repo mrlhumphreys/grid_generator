@@ -15,23 +15,23 @@ describe GridGenerator::Megaminx::FaceProjection do
     it 'should generate' do
       projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30)
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([170.0, 77.29490168751578]),
           b: Matrix.column_vector([170.0, 20.0])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([258.167787843871, 141.3525491562421]), 
           b: Matrix.column_vector([312.658477444273, 123.64745084375788])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([224.49068960040208, 245.0]), 
           b: Matrix.column_vector([258.167787843871, 291.3525491562421])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([115.50931039959795, 245.0]), 
           b: Matrix.column_vector([81.83221215612905, 291.3525491562421])
         ), 
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([81.83221215612903, 141.35254915624213]), 
           b: Matrix.column_vector([27.341522555726954, 123.64745084375792])
         )
@@ -42,23 +42,23 @@ describe GridGenerator::Megaminx::FaceProjection do
     it 'should generate with rotation offset' do
       projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, rotation_offset: Math::PI * 0.2)
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([224.49068960040205, 95.0]),
           b: Matrix.column_vector([258.167787843871, 48.64745084375788])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([258.167787843871, 198.64745084375787]), 
           b: Matrix.column_vector([312.658477444273, 216.35254915624208])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([170.0, 262.7050983124842]), 
           b: Matrix.column_vector([170.00000000000003, 320.0])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([81.83221215612905, 198.6474508437579]), 
           b: Matrix.column_vector([27.341522555726982, 216.3525491562421])
         ), 
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([115.50931039959792, 95.00000000000001]), 
           b: Matrix.column_vector([81.83221215612899, 48.64745084375791])
         )
@@ -72,111 +72,111 @@ describe GridGenerator::Megaminx::FaceProjection do
       projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30)
       expected = [
         [
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([228.77852522924732, 39.09830056250526]), 
             b: Matrix.column_vector([294.49491424413895, 129.54915028125262])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([294.49491424413895, 98.64745084375788]), 
             b: Matrix.column_vector([228.77852522924732, 120.0])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([276.331351044005, 135.45084971874735]), 
             b: Matrix.column_vector([170.0, 58.19660112501052])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([199.38926261462365, 98.6474508437579]), 
             b: Matrix.column_vector([199.38926261462365, 29.54915028125263])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([170.0, 39.09830056250526]),
             b: Matrix.column_vector([276.331351044005, 73.64745084375788])
           )
         ],
         [
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([312.65847744427305, 185.45084971874738]),
             b: Matrix.column_vector([246.94208842938133, 275.9016994374947])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([276.331351044005, 266.35254915624205]),
             b: Matrix.column_vector([235.71638901489172, 210.45084971874738])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([235.71638901489172, 260.45084971874735]),
             b: Matrix.column_vector([276.331351044005, 135.45084971874738])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([246.94208842938133, 175.90169943749473]),
             b: Matrix.column_vector([312.65847744427305, 154.54915028125262])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([294.494914244139, 129.54915028125262]),
             b: Matrix.column_vector([294.494914244139, 241.35254915624208])
           )
         ],
         [
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([199.38926261462368, 310.45084971874735]),
             b: Matrix.column_vector([93.05791157061873, 275.9016994374947])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([111.22147477075276, 300.9016994374947]),
             b: Matrix.column_vector([151.83643679986596, 245.0])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([104.28361098510834, 260.45084971874735]),
             b: Matrix.column_vector([235.71638901489172, 260.45084971874735])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([188.16356320013404, 245.0]),
             b: Matrix.column_vector([228.77852522924735, 300.9016994374947])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([246.94208842938136, 275.90169943749476]),
             b: Matrix.column_vector([140.61073738537638, 310.45084971874735])
           )
         ],
         [
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([45.50508575586099, 241.35254915624213]),
             b: Matrix.column_vector([45.50508575586103, 129.54915028125268])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([27.34152255572701, 154.54915028125268]),
             b: Matrix.column_vector([93.05791157061866, 175.90169943749476])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([63.668648955995025, 135.4508497187474]),
             b: Matrix.column_vector([104.28361098510831, 260.45084971874735])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([104.28361098510833, 210.45084971874738]),
             b: Matrix.column_vector([63.668648955995025, 266.35254915624216])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([93.05791157061867, 275.90169943749476]),
             b: Matrix.column_vector([27.341522555726982, 185.4508497187474])
           )
         ],
         [
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([63.66864895599497, 73.6474508437579]),
             b: Matrix.column_vector([169.99999999999994, 39.0983005625053])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([140.6107373853763, 29.54915028125268]),
             b: Matrix.column_vector([140.61073738537632, 98.64745084375788])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([169.99999999999997, 58.19660112501053]),
             b: Matrix.column_vector([63.668648955994996, 135.4508497187474])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([111.22147477075268, 120.00000000000003]),
             b: Matrix.column_vector([45.505085755860975, 98.64745084375792])
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix.column_vector([45.50508575586096, 129.54915028125265]),
             b: Matrix.column_vector([111.22147477075265, 39.0983005625053])
           )
@@ -190,107 +190,107 @@ describe GridGenerator::Megaminx::FaceProjection do
       projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, rotation_offset: Math::PI * 0.2)
       expected = [
         [
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[294.49491424413907], [98.64745084375788]], 
             b: Matrix[[294.49491424413895], [210.45084971874735]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[312.658477444273], [185.45084971874735]], 
             b: Matrix[[246.94208842938133], [164.09830056250527]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[276.331351044005], [204.54915028125262]], 
             b: Matrix[[235.71638901489172], [79.54915028125262]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[235.7163890148917], [129.54915028125262]], 
             b: Matrix[[276.331351044005], [73.64745084375788]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[246.94208842938133], [64.09830056250524]], 
             b: Matrix[[312.658477444273], [154.54915028125262]]
           )
         ], [
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[276.33135104400503], [266.3525491562421]], 
             b: Matrix[[170.00000000000003], [300.9016994374947]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[199.38926261462368], [310.45084971874735]], 
             b: Matrix[[199.38926261462368], [241.35254915624213]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[170.00000000000003], [281.8033988749895]], 
             b: Matrix[[276.331351044005], [204.54915028125262]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[228.77852522924732], [220.0]], 
             b: Matrix[[294.49491424413907], [241.3525491562421]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[294.494914244139], [210.45084971874735]], 
             b: Matrix[[228.77852522924732], [300.9016994374947]]
           )
         ], [
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[111.22147477075272], [300.90169943749476]], 
             b: Matrix[[45.505085755861046], [210.4508497187474]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[45.505085755861074], [241.35254915624213]], 
             b: Matrix[[111.22147477075268], [220.0]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[63.668648955995025], [204.54915028125265]], 
             b: Matrix[[170.00000000000003], [281.8033988749895]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[140.61073738537635], [241.3525491562421]], 
             b: Matrix[[140.6107373853764], [310.45084971874735]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[170.0], [300.90169943749476]], 
             b: Matrix[[63.66864895599505], [266.3525491562421]]
           )
         ], [
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[27.341522555726954], [154.54915028125265]], 
             b: Matrix[[93.05791157061867], [64.09830056250533]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[63.668648955995025], [73.64745084375795]], 
             b: Matrix[[104.28361098510828], [129.54915028125265]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[104.2836109851083], [79.54915028125266]], 
             b: Matrix[[63.66864895599501], [204.54915028125265]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[93.05791157061869], [164.09830056250527]], 
             b: Matrix[[27.341522555726954], [185.4508497187474]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[45.50508575586099], [210.45084971874738]], 
             b: Matrix[[45.505085755860975], [98.64745084375792]]
           )
         ], [
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[140.6107373853763], [29.549150281252622]], 
             b: Matrix[[246.94208842938127], [64.09830056250526]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[228.77852522924724], [39.09830056250527]], 
             b: Matrix[[188.163563200134], [94.99999999999999]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[235.71638901489166], [79.54915028125262]], 
             b: Matrix[[104.28361098510827], [79.54915028125264]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[151.83643679986596], [95.00000000000001]], 
             b: Matrix[[111.22147477075265], [39.09830056250527]]
           ),
-          GridGenerator::Line.new(
+          GridGenerator::BaseLine.new(
             a: Matrix[[93.05791157061863], [64.09830056250527]], 
             b: Matrix[[199.3892626146236], [29.54915028125265]]
           )
@@ -305,23 +305,23 @@ describe GridGenerator::Megaminx::FaceProjection do
     it 'should generate' do
       projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30)
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([140.61073738537635, 98.6474508437579]),
           b: Matrix.column_vector([246.94208842938133, 175.90169943749473])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([228.77852522924732, 120.0]), 
           b: Matrix.column_vector([188.16356320013404, 245.0])
         ), 
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([235.71638901489172, 210.45084971874735]), 
           b: Matrix.column_vector([104.28361098510831, 210.45084971874738])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([151.836436799866, 245.0]), 
           b: Matrix.column_vector([111.22147477075269, 120.00000000000001])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([93.05791157061867, 175.90169943749476]), 
           b: Matrix.column_vector([199.38926261462365, 98.64745084375788])
         )
@@ -332,23 +332,23 @@ describe GridGenerator::Megaminx::FaceProjection do
     it 'should generate with rotation' do
       projection = GridGenerator::Megaminx::FaceProjection.new(x: 20, y: 20, units: 30, rotation_offset: Math::PI * 0.2)
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([188.16356320013404, 95.00000000000001]),
           b: Matrix.column_vector([228.77852522924732, 220.0])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([246.94208842938133, 164.09830056250527]), 
           b: Matrix.column_vector([140.61073738537635, 241.3525491562421])
         ), 
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([199.38926261462368, 241.3525491562421]), 
           b: Matrix.column_vector([93.05791157061867, 164.09830056250527])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([111.2214747707527, 220.0]), 
           b: Matrix.column_vector([151.83643679986596, 95.0])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([104.2836109851083, 129.54915028125265]), 
           b: Matrix.column_vector([235.7163890148917, 129.54915028125262])
         )

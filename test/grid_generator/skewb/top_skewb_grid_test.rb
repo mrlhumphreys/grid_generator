@@ -15,11 +15,11 @@ describe GridGenerator::Skewb::TopSkewbGrid do
     it 'should generate' do
       grid = GridGenerator::Skewb::TopSkewbGrid.new(x: 20, y: 20, units: 20, elements: "w,-,w\\n-,w,-\\nw,-,B")
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([60, 40]), 
           b: Matrix.column_vector([140, 40])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([60, 80]),
           b: Matrix.column_vector([140, 80])
         )
@@ -32,11 +32,11 @@ describe GridGenerator::Skewb::TopSkewbGrid do
     it 'should generate' do
       grid = GridGenerator::Skewb::TopSkewbGrid.new(x: 20, y: 20, units: 20, elements: "w,-,w\\n-,w,-\\nw,-,B")
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([60, 40]), 
           b: Matrix.column_vector([60, 80])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([140, 40]), 
           b: Matrix.column_vector([140, 80])
         )

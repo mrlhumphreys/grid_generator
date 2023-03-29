@@ -17,12 +17,12 @@ module GridGenerator
       case obj
       when Matrix
         (matrix * (obj - rotation_point)) + rotation_point
-      when GridGenerator::Line
+      when GridGenerator::BaseLine
         new_a = rotate(obj.a)
         new_b = rotate(obj.b)
-        GridGenerator::Line.new(a: new_a, b: new_b)
+        GridGenerator::BaseLine.new(a: new_a, b: new_b)
       else
-        raise ArgumentError, "Object must be Matrix or Line"
+        raise ArgumentError, "Object must be Matrix or BaseLine"
       end
     end
   end

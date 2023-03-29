@@ -2,7 +2,7 @@ require_relative '../svg/polygon'
 require_relative '../svg/style'
 require_relative '../rotator'
 require_relative '../scaler'
-require_relative '../line'
+require_relative '../base_line'
 require_relative 'triangle_factory'
 
 module GridGenerator
@@ -86,7 +86,7 @@ module GridGenerator
           transformed_1 = rotator.rotate(scaled_1) + offset
           transformed_2 = rotator.rotate(scaled_2) + offset
 
-          GridGenerator::Line.new(a: transformed_1, b: transformed_2) 
+          GridGenerator::BaseLine.new(a: transformed_1, b: transformed_2) 
         end
       end
 
@@ -115,7 +115,7 @@ module GridGenerator
           transformed_1 = rotator.rotate(scaled_1) + offset
           transformed_2 = rotator.rotate(scaled_2) + offset
 
-          GridGenerator::Line.new(a: transformed_1, b: transformed_2) 
+          GridGenerator::BaseLine.new(a: transformed_1, b: transformed_2) 
         end
       end
 
@@ -144,7 +144,7 @@ module GridGenerator
           transformed_1 = rotator.rotate(scaled_1) + offset
           transformed_2 = rotator.rotate(scaled_2) + offset
 
-          GridGenerator::Line.new(a: transformed_1, b: transformed_2) 
+          GridGenerator::BaseLine.new(a: transformed_1, b: transformed_2) 
         end
       end
 

@@ -15,19 +15,19 @@ describe GridGenerator::Cubic::BorderedGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::BorderedGrid.new(x: 20, y: 20, units: 40, squares: "-,-,-,-\\nY,-,Y,-\\nY,-,Y,-\\n-,-,-,-")
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([20, 30]), 
           b: Matrix.column_vector([120, 30])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([20, 70]), 
           b: Matrix.column_vector([120, 70])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([20, 110]), 
           b: Matrix.column_vector([120, 110])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([20, 150]), 
           b: Matrix.column_vector([120, 150])
         ) 
@@ -40,19 +40,19 @@ describe GridGenerator::Cubic::BorderedGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::BorderedGrid.new(x: 20, y: 20, units: 40, squares: "-,-,-,-\\nY,-,Y,-\\nY,-,Y,-\\n-,-,-,-")
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([30, 20]), 
           b: Matrix.column_vector([30, 120])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([70, 20]), 
           b: Matrix.column_vector([70, 120])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([110, 20]), 
           b: Matrix.column_vector([110, 120])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([150, 20]), 
           b: Matrix.column_vector([150, 120])
         )

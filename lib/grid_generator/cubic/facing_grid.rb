@@ -2,7 +2,7 @@ require 'matrix'
 require_relative '../svg/polygon'
 require_relative '../svg/style'
 require_relative '../face_parser'
-require_relative '../line'
+require_relative '../base_line'
 require_relative 'facing_square_factory'
 
 module GridGenerator
@@ -72,7 +72,7 @@ module GridGenerator
             unit_y(i+1)
           ])
 
-          GridGenerator::Line.new(a: a, b: b) 
+          GridGenerator::BaseLine.new(a: a, b: b) 
         end
       end
   
@@ -88,7 +88,7 @@ module GridGenerator
             max_y
           ])
 
-          GridGenerator::Line.new(a: a, b: b)
+          GridGenerator::BaseLine.new(a: a, b: b)
         end
       end
   

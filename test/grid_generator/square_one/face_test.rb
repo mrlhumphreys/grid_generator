@@ -67,7 +67,7 @@ describe GridGenerator::SquareOne::Face do
   describe '#axis' do
     it 'should generate forward' do
       face = GridGenerator::SquareOne::Face.new(x: 20, y: 160, units: 40, elements: "e0F,c0y,e3F,c3y,e6F,c6y,e9F,c9W", axis_direction: :forward)
-      expected = GridGenerator::Line.new(
+      expected = GridGenerator::BaseLine.new(
         a: Matrix.column_vector([96.07695154586736, 160]),
         b: Matrix.column_vector([63.92304845413264, 280]) 
       )
@@ -76,7 +76,7 @@ describe GridGenerator::SquareOne::Face do
 
     it 'should generate back' do
       face = GridGenerator::SquareOne::Face.new(x: 20, y: 160, units: 40, elements: "e0F,c0y,e3F,c3y,e6F,c6y,e9F,c9W", axis_direction: :back)
-      expected = GridGenerator::Line.new(
+      expected = GridGenerator::BaseLine.new(
         a: Matrix.column_vector([63.92304845413264, 160]), 
         b: Matrix.column_vector([96.07695154586736, 280])
       )

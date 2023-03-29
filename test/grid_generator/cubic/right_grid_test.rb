@@ -7,19 +7,19 @@ describe GridGenerator::Cubic::RightGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::RightGrid.new(x: 120, y: 70, units: 20, squares: "o,o,o\\n-,-,-\\n-,-,R\\no,o,o")
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([120, 120]), 
           b: Matrix.column_vector([180, 90])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([120, 140]), 
           b: Matrix.column_vector([180, 110])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([120, 160]), 
           b: Matrix.column_vector([180, 130])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([120, 180]), 
           b: Matrix.column_vector([180, 150])
         )
@@ -32,15 +32,15 @@ describe GridGenerator::Cubic::RightGrid do
     it 'should generate' do
       grid = GridGenerator::Cubic::RightGrid.new(x: 120, y: 70, units: 20, squares: "o,o,o\\n-,-,-\\n-,-,R\\no,o,o")
       expected = [
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([140, 90]), 
           b: Matrix.column_vector([140, 170])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([160, 80]), 
           b: Matrix.column_vector([160, 160])
         ),
-        GridGenerator::Line.new(
+        GridGenerator::BaseLine.new(
           a: Matrix.column_vector([180, 70]), 
           b: Matrix.column_vector([180, 150])
         )
