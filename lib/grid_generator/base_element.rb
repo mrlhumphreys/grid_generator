@@ -33,7 +33,7 @@ module GridGenerator
     end
 
     def to_svg
-      "<polygon points=\"#{points_string}}\" style=\"fill:#{colour};stroke:#{COLOURS[:stroke]};stroke-width:1;opacity:#{opacity}\" />"
+      "<polygon points=\"#{points_string}\" style=\"fill:#{colour};stroke:#{COLOURS[:stroke]};stroke-width:1;opacity:#{opacity}\" />"
     end
   end
 end

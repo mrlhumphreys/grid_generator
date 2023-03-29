@@ -98,7 +98,7 @@ module GridGenerator
         output = ""
         element_shapes.each do |element|
           if element.opacity == 0.4
-            output += "<polygon points=\"#{ element.points_string }\" style=\"fill:#{ COLOURS[:fill] };stroke:#{ COLOURS[:stroke] };stroke-width:1;opacity:1;]\" />"
+            output += "<polygon points=\"#{ element.points_string }\" style=\"fill:#{ COLOURS[:fill] };stroke:#{ COLOURS[:stroke] };stroke-width:1;opacity:1;\" />"
           end
           output += "<polygon points=\"#{ element.points_string }\" style=\"fill:#{ element.colour };stroke:#{ COLOURS[:stroke] };stroke-width:1;opacity:#{ element.opacity };\" />"
          end

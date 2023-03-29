@@ -1,7 +1,9 @@
-require_relative 'triangle_factory'
+require_relative '../svg/polygon'
+require_relative '../svg/style'
 require_relative '../rotator'
 require_relative '../scaler'
 require_relative '../line'
+require_relative 'triangle_factory'
 
 module GridGenerator
   module Pyraminx
@@ -174,10 +176,6 @@ module GridGenerator
         end
       end
 
-      def points_string
-        points.map { |p| "#{p[0,0].round},#{p[1,0].round}" }.join(' ')
-      end
-
       def element_shapes
         elements.map.each_with_index do |row, row_num|
           row.map.each_with_index do |col, col_num|
@@ -196,24 +194,21 @@ module GridGenerator
         end.flatten.compact
       end
 
+      def base_shape_style
+        GridGenerator::Svg::Style.new(fill: COLOURS[:fill], stroke: COLOURS[:stroke])
+      end
+
+      def base_shape
+        GridGenerator::Svg::Polygon.new(points: points, style: base_shape_style)
+      end
+
       def to_svg
-        output = "<polygon points=\"#{ points_string }\" style=\"fill:#{ COLOURS[:fill] };stroke:#{ COLOURS[:stroke] };stroke-width:1\" />"
+        output = base_shape.to_svg
 
-        for line in vertical_lines do
-          output += "<line x1=\"#{line.x1}\" y1=\"#{line.y1}\" x2=\"#{line.x2}\" y2=\"#{line.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
-        end
-
-        for line in diagonal_up_lines do
-          output += "<line x1=\"#{line.x1}\" y1=\"#{line.y1}\" x2=\"#{line.x2}\" y2=\"#{line.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
-        end
-
-        for line in diagonal_down_lines do
-          output += "<line x1=\"#{line.x1}\" y1=\"#{line.y1}\" x2=\"#{line.x2}\" y2=\"#{line.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
-        end
-
-        element_shapes.map do |shape|
-          output += "<polygon points=\"#{ shape.points_string }\" style=\"fill:#{ shape.colour };stroke:#{ COLOURS[:stroke] };stroke-width:1;opacity:#{ shape.opacity }\" />"
-        end
+        vertical_lines.each { |line| output += line.to_svg }
+        diagonal_up_lines.each { |line| output += line.to_svg }
+        diagonal_down_lines.each { |line| output += line.to_svg }
+        element_shapes.each { |shape| output += shape.to_svg }
 
         output
       end

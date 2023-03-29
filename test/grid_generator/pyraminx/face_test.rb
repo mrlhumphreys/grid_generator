@@ -6,28 +6,8 @@ describe GridGenerator::Pyraminx::Face do
   describe '#to_svg' do
     it 'should generate' do
       grid = GridGenerator::Pyraminx::Face.new(x: 20, y: 20, units: 30, elements: "Y\\n-,-,-\\nY,-,-,-,Y")
-      expected = "<polygon points=\"65,20 20,98 110,98\" style=\"fill:#d0d0d0;stroke:#404040;stroke-width:1\" /><line x1=\"50.0\" y1=\"45.98076211353316\" x2=\"80.0\" y2=\"45.98076211353316\" style=\"stroke:#404040;stroke-width:1\" /><line x1=\"35.0\" y1=\"71.96152422706632\" x2=\"95.0\" y2=\"71.96152422706632\" style=\"stroke:#404040;stroke-width:1\" /><line x1=\"50.0\" y1=\"97.94228634059948\" x2=\"80.0\" y2=\"45.98076211353316\" style=\"stroke:#404040;stroke-width:1\" /><line x1=\"80.0\" y1=\"97.94228634059948\" x2=\"95.0\" y2=\"71.96152422706632\" style=\"stroke:#404040;stroke-width:1\" /><line x1=\"50.0\" y1=\"45.98076211353316\" x2=\"80.0\" y2=\"97.94228634059948\" style=\"stroke:#404040;stroke-width:1\" /><line x1=\"35.0\" y1=\"71.96152422706632\" x2=\"50.0\" y2=\"97.94228634059948\" style=\"stroke:#404040;stroke-width:1\" /><polygon points=\"65,20 80,46 50,46\" style=\"fill:#ffff00;stroke:#404040;stroke-width:1;opacity:1\" /><polygon points=\"35,72 50,98 20,98\" style=\"fill:#ffff00;stroke:#404040;stroke-width:1;opacity:1\" /><polygon points=\"95,72 110,98 80,98\" style=\"fill:#ffff00;stroke:#404040;stroke-width:1;opacity:1\" />"
+      expected = "<polygon points=\"65,20 20,98 110,98\" style=\"fill:#d0d0d0;stroke:#404040;stroke-width:1;opacity:1;\" /><line x1=\"50.0\" y1=\"45.98076211353316\" x2=\"80.0\" y2=\"45.98076211353316\" style=\"stroke:#404040;stroke-width:1\" /><line x1=\"35.0\" y1=\"71.96152422706632\" x2=\"95.0\" y2=\"71.96152422706632\" style=\"stroke:#404040;stroke-width:1\" /><line x1=\"50.0\" y1=\"97.94228634059948\" x2=\"80.0\" y2=\"45.98076211353316\" style=\"stroke:#404040;stroke-width:1\" /><line x1=\"80.0\" y1=\"97.94228634059948\" x2=\"95.0\" y2=\"71.96152422706632\" style=\"stroke:#404040;stroke-width:1\" /><line x1=\"50.0\" y1=\"45.98076211353316\" x2=\"80.0\" y2=\"97.94228634059948\" style=\"stroke:#404040;stroke-width:1\" /><line x1=\"35.0\" y1=\"71.96152422706632\" x2=\"50.0\" y2=\"97.94228634059948\" style=\"stroke:#404040;stroke-width:1\" /><polygon points=\"65,20 80,46 50,46\" style=\"fill:#ffff00;stroke:#404040;stroke-width:1;opacity:1\" /><polygon points=\"35,72 50,98 20,98\" style=\"fill:#ffff00;stroke:#404040;stroke-width:1;opacity:1\" /><polygon points=\"95,72 110,98 80,98\" style=\"fill:#ffff00;stroke:#404040;stroke-width:1;opacity:1\" />"
       assert_equal expected, grid.to_svg
-    end
-  end
-
-  describe '#points_string' do
-    it 'should generate' do
-      grid = GridGenerator::Pyraminx::Face.new(x: 20, y: 20, units: 30, elements: "Y\\n-,-,-\\nY,-,-,-,Y")
-      expected = "65,20 20,98 110,98"
-      assert_equal expected, grid.points_string
-    end
-
-    it 'should generate with rotation' do
-      grid = GridGenerator::Pyraminx::Face.new(x: 20, y: 20, units: 30, elements: "Y\\n-,-,-\\nY,-,-,-,Y", rotation_angle: Math::PI)
-      expected = "65,98 110,20 20,20"
-      assert_equal expected, grid.points_string
-    end
-
-    it 'should generate with scale' do
-      grid = GridGenerator::Pyraminx::Face.new(x: 20, y: 20, units: 30, elements: "Y\\n-,-,-\\nY,-,-,-,Y", vertical_scale: 0.5)
-      expected = "65,20 20,59 110,59"
-      assert_equal expected, grid.points_string
     end
   end
 

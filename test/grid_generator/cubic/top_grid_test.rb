@@ -3,14 +3,6 @@ require 'minitest/spec'
 require 'grid_generator/cubic/top_grid'
 
 describe GridGenerator::Cubic::TopGrid do
-  describe '#points_string' do
-    it 'should generate' do
-      grid = GridGenerator::Cubic::TopGrid.new(x: 20, y: 20, units: 20, squares: "b,b,b,b,b\\nb,-,b,-,b\\nb,b,b,b,b") 
-      expected = "80,20 180,70 120,100 20,50"
-      assert_equal expected, grid.points_string
-    end
-  end
-
   describe '#rows' do
     it 'should generate' do
       grid = GridGenerator::Cubic::TopGrid.new(x: 20, y: 20, units: 20, squares: "b,b,b,b,b\\nb,-,b,-,b\\nb,b,b,b,b") 

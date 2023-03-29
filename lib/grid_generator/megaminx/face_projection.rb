@@ -1,4 +1,6 @@
 require 'matrix'
+require_relative '../svg/polygon'
+require_relative '../svg/style'
 require_relative '../rotator'
 require_relative '../helper'
 require_relative '../line'
@@ -149,13 +151,13 @@ module GridGenerator
       end
 
       # for svg
-      def decagon_points_string
-        decagon_points.map { |p| offset_rotator.rotate(p) + offset }.map { |p| "#{p[0,0].round},#{p[1,0].round}" }.join(' ')
+      def decagon_points_transformed
+        decagon_points.map { |p| offset_rotator.rotate(p) + offset }
       end
 
       # for svg
-      def pentagon_points_string
-        pentagon_points.map { |p| offset_rotator.rotate(p) + offset }.map { |p| "#{p[0,0].round},#{p[1,0].round}" }.join(' ')
+      def pentagon_points_transformed
+        pentagon_points.map { |p| offset_rotator.rotate(p) + offset }
       end
 
       # for svg
@@ -210,32 +212,36 @@ module GridGenerator
         end
       end
 
+      def decagon_shape_style
+        GridGenerator::Svg::Style.new(fill: COLOURS[:fill], stroke: COLOURS[:stroke])
+      end
+
+      def decagon_shape
+        GridGenerator::Svg::Polygon.new(points: decagon_points_transformed, style: decagon_shape_style)
+      end
+
+      def pentagon_shape_style
+        GridGenerator::Svg::Style.new(fill: 'none', stroke: COLOURS[:stroke])
+      end
+
+      def pentagon_shape
+        GridGenerator::Svg::Polygon.new(points: pentagon_points_transformed, style: pentagon_shape_style)
+      end
+
       def to_svg
-        output = "<polygon points=\"#{ decagon_points_string }\" style=\"fill:#{ COLOURS[:fill] };stroke:#{ COLOURS[:stroke] };stroke-width:1\" />"
-        output += "<polygon points=\"#{ pentagon_points_string }\" style=\"fill:none;stroke:#{ COLOURS[:stroke] };stroke-width:1\" />"
+        output = decagon_shape.to_svg
+        output += pentagon_shape.to_svg
 
-        for line in connecting_lines do
-          output += "<line x1=\"#{line.x1}\" y1=\"#{line.y1}\" x2=\"#{line.x2}\" y2=\"#{line.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
+        connecting_lines.each { |line| output += line.to_svg }
+
+        front_face_lines.each { |line| output += line.to_svg }
+        outside_face_lines.each do |face|
+          face.each { |line| output += line.to_svg }
         end
 
-        for line in front_face_lines do
-          output += "<line x1=\"#{line.x1}\" y1=\"#{line.y1}\" x2=\"#{line.x2}\" y2=\"#{line.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
-        end
-
-        for face in outside_face_lines do
-          for line in face do
-            output += "<line x1=\"#{line.x1}\" y1=\"#{line.y1}\" x2=\"#{line.x2}\" y2=\"#{line.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
-          end
-        end
-
-        for shape in front_face_element_shapes do
-          output += "<polygon points=\"#{shape.points_string}\" style=\"fill:#{shape.colour};stroke:#{COLOURS[:stroke]};stroke-width:1;opacity:#{shape.opacity}\" />"
-        end
-
-        for face in outside_face_element_shapes do
-          for shape in face do
-            output += "<polygon points=\"#{shape.points_string}\" style=\"fill:#{shape.colour};stroke:#{COLOURS[:stroke]};stroke-width:1;opacity:#{shape.opacity}\" />"
-          end
+        front_face_element_shapes.each { |shape| output += shape.to_svg }
+        outside_face_element_shapes.each do |face|
+          face.each { |shape| output += shape.to_svg }
         end
 
         output

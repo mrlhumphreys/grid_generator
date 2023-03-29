@@ -1,4 +1,6 @@
 require 'matrix'
+require_relative '../svg/polygon'
+require_relative '../svg/style'
 require_relative '../line'
 require_relative '../face_parser'
 require_relative 'facing_square_factory'
@@ -128,34 +130,21 @@ module GridGenerator
           Matrix.column_vector([ x, max_y ])
         ]
       end
-  
-      def points_string
-        points.map { |p| "#{p[0,0].round},#{p[1,0].round}" }.join(' ')
+
+      def base_shape_style
+        GridGenerator::Svg::Style.new(fill: COLOURS[:fill], stroke: COLOURS[:stroke])
       end
 
-      def as_json
-        {
-          "points_string" => points_string,
-          "rows" => rows,
-          "columns" => columns,
-          "element_shapes" => element_shapes.map(&:as_json)
-        }
+      def base_shape
+        GridGenerator::Svg::Polygon.new(points: points, style: base_shape_style)
       end
 
       def to_svg
-        output = "<polygon points=\"#{points_string}\" style=\"fill:#{COLOURS[:fill]};stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
+        output = base_shape.to_svg
 
-        for row in rows do
-          output += "<line x1=\"#{row.x1}\" y1=\"#{row.y1}\" x2=\"#{row.x2}\" y2=\"#{row.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
-        end
-
-        for col in columns do
-          output += "<line x1=\"#{col.x1}\" y1=\"#{col.y1}\" x2=\"#{col.x2}\" y2=\"#{col.y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
-        end
-
-        for shape in element_shapes do
-          output += "<polygon points=\"#{shape.points_string}\" style=\"fill:#{shape.colour};stroke:#{COLOURS[:stroke]};stroke-width:1;opacity:#{shape.opacity}\" />"
-        end
+        rows.each { |row| output += row.to_svg }
+        columns.each { |col| output += col.to_svg } 
+        element_shapes.each { |shape| output += shape.to_svg } 
 
         output
       end

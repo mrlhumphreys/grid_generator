@@ -1,5 +1,10 @@
 module GridGenerator
   class Line
+    COLOURS = {
+      fill: "#d0d0d0",
+      stroke: "#404040"
+    }
+
     def initialize(a:, b:)
       @a, @b = a, b
     end
@@ -36,6 +41,10 @@ module GridGenerator
 
     def y2
       b[1,0]
+    end
+
+    def to_svg
+      "<line x1=\"#{x1}\" y1=\"#{y1}\" x2=\"#{x2}\" y2=\"#{y2}\" style=\"stroke:#{COLOURS[:stroke]};stroke-width:1\" />"
     end
   end
 end

@@ -3,6 +3,11 @@ require_relative '../face_parser'
 module GridGenerator
   module Skewb
     class SkewbGrid
+      COLOURS = {
+        fill: "#d0d0d0",
+        stroke: "#404040"
+      }
+
       def initialize(x:, y:, units: , elements: )
         @x, @y = x, y
         @units = units
@@ -39,10 +44,6 @@ module GridGenerator
         end
       end
   
-      def border_points_string
-        border_points.map { |x| x.join(',') }.join(' ') 
-      end
-  
       def element_shapes
         elements.each_with_index.map do |row, row_num|
           row.each_with_index.map do |col, col_num|
@@ -51,11 +52,22 @@ module GridGenerator
         end.flatten.compact
       end
 
-      def as_json
-        {
-          "border_points_string" => border_points_string,
-          "element_shapes" => element_shapes.map(&:as_json)
-        }
+      def base_shape_style
+        GridGenerator::Svg::Style.new(fill: COLOURS[:fill], stroke: COLOURS[:stroke])
+      end
+
+      def base_shape
+        GridGenerator::Svg::Polygon.new(points: points, style: base_shape_style)
+      end
+
+      def to_svg
+        output = base_shape.to_svg
+
+        rows.each { |row| output += row.to_svg }
+        columns.each { |col| output += col.to_svg }
+        element_shapes.each { |element| output += element.to_svg if element } 
+
+        output
       end
     end
   end
