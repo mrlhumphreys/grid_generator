@@ -1,7 +1,7 @@
 module GridGenerator
   module Svg 
     class Style
-      def initialize(fill: , stroke: , stroke_width: 1, opacity: 1) 
+      def initialize(fill: , stroke: '#404040', stroke_width: 1, opacity: 1) 
         @fill = fill
         @stroke = stroke
         @stroke_width = stroke_width
