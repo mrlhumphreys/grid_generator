@@ -13,6 +13,8 @@ require_relative 'grid_generator/skewb/top_skewb_grid'
 require_relative 'grid_generator/skewb/left_skewb_grid'
 require_relative 'grid_generator/skewb/right_skewb_grid'
 require_relative 'grid_generator/curvy_copter/top_grid'
+require_relative 'grid_generator/curvy_copter/left_grid'
+require_relative 'grid_generator/curvy_copter/right_grid'
 require_relative 'grid_generator/square_one/face'
 require_relative 'grid_generator/pyraminx/face'
 require_relative 'grid_generator/megaminx/face_projection'
@@ -59,6 +61,14 @@ module GridGenerator
 
   def self.curvy_copter_top_grid(args)
     CurvyCopter::TopGrid.new(**args)
+  end
+
+  def self.curvy_copter_left_grid(args)
+    CurvyCopter::LeftGrid.new(**args)
+  end
+
+  def self.curvy_copter_right_grid(args)
+    CurvyCopter::RightGrid.new(**args)
   end
 
   def self.square_one_face(args)
