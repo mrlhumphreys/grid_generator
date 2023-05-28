@@ -9,10 +9,12 @@ module GridGenerator
       'o' => '#ffb000',
       'gr' => '#808080',
       'br' => '#804000',
-      's' => '#8080ff', # change to sand colour
+      's' => '#c2b280', 
+      'c' => '#00ffff',
       'l' => '#80ff80',
       'p' => '#800080', 
       'pi' => '#ff8080',
+      'bl' => '#404040',
       'fu' => "#f0f0f0", # face up
       'ff' => "#d0d0d0", # face front
       'fr' => "#b0b0b0"  # face right
