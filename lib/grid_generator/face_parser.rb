@@ -3,7 +3,7 @@ module GridGenerator
     COLOURS = { 
       'w' => '#ffffff',
       'y' => '#ffff00',
-      'b' => '#0000ff',
+      'b' => '#5050ff',
       'g' => '#00ff00',
       'r' => '#ff0000',
       'o' => '#ffb000',
