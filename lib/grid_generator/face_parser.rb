@@ -4,7 +4,7 @@ module GridGenerator
       'w' => '#ffffff',
       'y' => '#ffff00',
       'b' => '#5050ff',
-      'g' => '#00ff00',
+      'g' => '#00b000',
       'r' => '#ff0000',
       'o' => '#ffb000',
       'gr' => '#808080',
