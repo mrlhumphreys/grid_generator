@@ -5,7 +5,7 @@ require_relative 'top_element_factory'
 
 module GridGenerator
   module Skewb
-    class TopSkewbGrid < Skewb::SkewbGrid
+    class TopGrid < Skewb::SkewbGrid
       def factory_class
         GridGenerator::Skewb::TopElementFactory
       end

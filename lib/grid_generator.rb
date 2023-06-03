@@ -9,9 +9,9 @@ require_relative 'grid_generator/cubic/right_grid'
 require_relative 'grid_generator/cubic/facing_grid'
 require_relative 'grid_generator/cubic/bordered_grid'
 require_relative 'grid_generator/cubic/square_factory'
-require_relative 'grid_generator/skewb/top_skewb_grid'
-require_relative 'grid_generator/skewb/left_skewb_grid'
-require_relative 'grid_generator/skewb/right_skewb_grid'
+require_relative 'grid_generator/skewb/top_grid'
+require_relative 'grid_generator/skewb/left_grid'
+require_relative 'grid_generator/skewb/right_grid'
 require_relative 'grid_generator/curvy_copter/top_grid'
 require_relative 'grid_generator/curvy_copter/left_grid'
 require_relative 'grid_generator/curvy_copter/right_grid'
@@ -50,16 +50,16 @@ module GridGenerator
     ).build
   end
 
-  def self.top_skewb_grid(args)
-    Skewb::TopSkewbGrid.new(**args)
+  def self.skewb_top_grid(args)
+    Skewb::TopGrid.new(**args)
   end
 
-  def self.left_skewb_grid(args)
-    Skewb::LeftSkewbGrid.new(**args)
+  def self.skewb_left_grid(args)
+    Skewb::LeftGrid.new(**args)
   end
 
-  def self.right_skewb_grid(args)
-    Skewb::RightSkewbGrid.new(**args)
+  def self.skewb_right_grid(args)
+    Skewb::RightGrid.new(**args)
   end
 
   def self.curvy_copter_top_grid(args)
