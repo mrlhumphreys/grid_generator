@@ -379,7 +379,7 @@ describe GridGenerator::Megaminx::FaceProjection do
           Matrix[[228.77852522924732], [120.0]],
           Matrix[[217.55282581475768], [154.54915028125265]],
           Matrix[[169.99999999999997], [119.99999999999999]]
-        ], colour: "#0000ff", opacity: 1),
+        ], colour: "#5050ff", opacity: 1),
         GridGenerator::BaseElement.new(points: [
           Matrix[[111.22147477075269], [120.00000000000001]], 
           Matrix[[140.61073738537635], [98.6474508437579]], 
@@ -411,7 +411,7 @@ describe GridGenerator::Megaminx::FaceProjection do
           Matrix[[246.94208842938133], [164.09830056250527]], 
           Matrix[[217.55282581475768], [185.4508497187474]], 
           Matrix[[199.38926261462365], [129.5491502812526]]
-        ], colour: "#0000ff", opacity: 1),
+        ], colour: "#5050ff", opacity: 1),
         GridGenerator::BaseElement.new(points: [
           Matrix[[151.83643679986596], [95.0]], 
           Matrix[[188.16356320013404], [95.00000000000001]], 
@@ -446,7 +446,7 @@ describe GridGenerator::Megaminx::FaceProjection do
             Matrix[[294.49491424413895], [98.64745084375788]], 
             Matrix[[276.3313510440049], [104.54915028125262]], 
             Matrix[[246.9420884293813], [64.09830056250524]]
-          ], colour: "#0000ff", opacity: 1),
+          ], colour: "#5050ff", opacity: 1),
           GridGenerator::BaseElement.new(points: [
             Matrix[[199.38926261462365], [29.54915028125263]], 
             Matrix[[228.77852522924732], [39.09830056250526]], 
@@ -473,7 +473,7 @@ describe GridGenerator::Megaminx::FaceProjection do
             Matrix[[276.331351044005], [266.35254915624205]], 
             Matrix[[265.10565162951536], [250.90169943749478]], 
             Matrix[[294.49491424413895], [210.45084971874755]]
-          ], colour: "#0000ff", opacity: 1),
+          ], colour: "#5050ff", opacity: 1),
           GridGenerator::BaseElement.new(points: [
             Matrix[[312.65847744427305], [154.54915028125262]], 
             Matrix[[312.65847744427305], [185.45084971874738]], 
@@ -500,7 +500,7 @@ describe GridGenerator::Megaminx::FaceProjection do
             Matrix[[111.22147477075276], [300.9016994374947]], 
             Matrix[[122.44717418524237], [285.4508497187473]], 
             Matrix[[170.00000000000014], [300.90169943749476]]
-          ], colour: "#0000ff", opacity: 1),
+          ], colour: "#5050ff", opacity: 1),
           GridGenerator::BaseElement.new(points: [
             Matrix[[228.77852522924735], [300.9016994374947]], 
             Matrix[[199.38926261462368], [310.45084971874735]], 
@@ -527,7 +527,7 @@ describe GridGenerator::Megaminx::FaceProjection do
             Matrix[[27.34152255572701], [154.54915028125268]], 
             Matrix[[45.50508575586102], [160.45084971874738]], 
             Matrix[[45.505085755861], [210.4508497187474]]
-          ], colour: "#0000ff", opacity: 1),
+          ], colour: "#5050ff", opacity: 1),
           GridGenerator::BaseElement.new(points: [
             Matrix[[63.668648955995025], [266.35254915624216]], 
             Matrix[[45.50508575586099], [241.35254915624213]], 
@@ -554,7 +554,7 @@ describe GridGenerator::Megaminx::FaceProjection do
             Matrix[[140.6107373853763], [29.54915028125268]], 
             Matrix[[140.6107373853763], [48.647450843757916]], 
             Matrix[[93.05791157061866], [64.09830056250526]]
-          ], colour: "#0000ff", opacity: 1),
+          ], colour: "#5050ff", opacity: 1),
           GridGenerator::BaseElement.new(points: [
             Matrix[[45.505085755860975], [98.64745084375792]], 
             Matrix[[63.66864895599497], [73.6474508437579]], 
@@ -588,7 +588,7 @@ describe GridGenerator::Megaminx::FaceProjection do
             Matrix[[312.658477444273], [185.45084971874735]], 
             Matrix[[294.49491424413895], [179.5491502812526]], 
             Matrix[[294.494914244139], [129.5491502812526]]
-          ], colour: "#0000ff", opacity: 1),
+          ], colour: "#5050ff", opacity: 1),
           GridGenerator::BaseElement.new(points: [
             Matrix[[276.331351044005], [73.64745084375788]], 
             Matrix[[294.49491424413907], [98.64745084375788]], 
@@ -614,7 +614,7 @@ describe GridGenerator::Megaminx::FaceProjection do
             Matrix[[199.38926261462368], [310.45084971874735]], 
             Matrix[[199.38926261462368], [291.35254915624216]], 
             Matrix[[246.9420884293812], [275.90169943749487]]
-          ], colour: "#0000ff", opacity: 1),
+          ], colour: "#5050ff", opacity: 1),
           GridGenerator::BaseElement.new(points: [
             Matrix[[294.49491424413907], [241.3525491562421]], 
             Matrix[[276.33135104400503], [266.3525491562421]], 
@@ -640,7 +640,7 @@ describe GridGenerator::Megaminx::FaceProjection do
             Matrix[[45.505085755861074], [241.35254915624213]], 
             Matrix[[63.66864895599508], [235.45084971874735]], 
             Matrix[[93.05791157061877], [275.9016994374948]]
-          ], colour: "#0000ff", opacity: 1),
+          ], colour: "#5050ff", opacity: 1),
           GridGenerator::BaseElement.new(points: [
             Matrix[[140.6107373853764], [310.45084971874735]], 
             Matrix[[111.22147477075272], [300.90169943749476]], 
@@ -666,7 +666,7 @@ describe GridGenerator::Megaminx::FaceProjection do
             Matrix[[63.668648955995025], [73.64745084375795]], 
             Matrix[[74.89434837048466], [89.09830056250529]], 
             Matrix[[45.505085755860975], [129.54915028125265]]
-          ], colour: "#0000ff", opacity: 1),
+          ], colour: "#5050ff", opacity: 1),
           GridGenerator::BaseElement.new(points: [
             Matrix[[27.341522555726954], [185.4508497187474]], 
             Matrix[[27.341522555726954], [154.54915028125265]], 
@@ -692,7 +692,7 @@ describe GridGenerator::Megaminx::FaceProjection do
             Matrix[[228.77852522924724], [39.09830056250527]], 
             Matrix[[217.55282581475763], [54.549150281252636]], 
             Matrix[[170.0], [39.098300562505244]]
-          ], colour: "#0000ff", opacity: 1),
+          ], colour: "#5050ff", opacity: 1),
           GridGenerator::BaseElement.new(points: [
             Matrix[[111.22147477075265], [39.09830056250527]], 
             Matrix[[140.6107373853763], [29.549150281252622]], 

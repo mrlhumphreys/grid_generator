@@ -62,79 +62,79 @@ describe GridGenerator::Cubic::TopGrid do
           Matrix.column_vector([100, 30]), 
           Matrix.column_vector([80, 40]), 
           Matrix.column_vector([60, 30])
-        ], colour: "#0000ff", opacity: 0.4),
+        ], colour: "#5050ff", opacity: 0.4),
         GridGenerator::BaseElement.new(points: [
           Matrix.column_vector([100, 30]), 
           Matrix.column_vector([120, 40]), 
           Matrix.column_vector([100, 50]), 
           Matrix.column_vector([80, 40])
-        ], colour: "#0000ff", opacity: 0.4), 
+        ], colour: "#5050ff", opacity: 0.4), 
         GridGenerator::BaseElement.new(points: [
           Matrix.column_vector([120, 40]),
           Matrix.column_vector([140, 50]),
           Matrix.column_vector([120, 60]), 
           Matrix.column_vector([100, 50])
-        ], colour: "#0000ff", opacity: 0.4), 
+        ], colour: "#5050ff", opacity: 0.4), 
         GridGenerator::BaseElement.new(points: [
           Matrix.column_vector([140, 50]),
           Matrix.column_vector([160, 60]),
           Matrix.column_vector([140, 70]),
           Matrix.column_vector([120, 60])
-        ], colour: "#0000ff", opacity: 0.4), 
+        ], colour: "#5050ff", opacity: 0.4), 
         GridGenerator::BaseElement.new(points: [
           Matrix.column_vector([160, 60]),
           Matrix.column_vector([180, 70]), 
           Matrix.column_vector([160, 80]), 
           Matrix.column_vector([140, 70])
-        ], colour: "#0000ff", opacity: 0.4), 
+        ], colour: "#5050ff", opacity: 0.4), 
         GridGenerator::BaseElement.new(points: [
           Matrix.column_vector([60, 30]), 
           Matrix.column_vector([80, 40]), 
           Matrix.column_vector([60, 50]), 
           Matrix.column_vector([40, 40])
-        ], colour: "#0000ff", opacity: 0.4), 
+        ], colour: "#5050ff", opacity: 0.4), 
         GridGenerator::BaseElement.new(points: [
           Matrix.column_vector([100, 50]), 
           Matrix.column_vector([120, 60]), 
           Matrix.column_vector([100, 70]), 
           Matrix.column_vector([80, 60])
-        ], colour: "#0000ff", opacity: 0.4), 
+        ], colour: "#5050ff", opacity: 0.4), 
         GridGenerator::BaseElement.new(points: [
           Matrix.column_vector([140, 70]), 
           Matrix.column_vector([160, 80]),
           Matrix.column_vector([140, 90]),
           Matrix.column_vector([120, 80])
-        ], colour: "#0000ff", opacity: 0.4), 
+        ], colour: "#5050ff", opacity: 0.4), 
         GridGenerator::BaseElement.new(points: [
           Matrix.column_vector([40, 40]),
           Matrix.column_vector([60, 50]),
           Matrix.column_vector([40, 60]),
           Matrix.column_vector([20, 50])
-        ], colour: "#0000ff", opacity: 0.4), 
+        ], colour: "#5050ff", opacity: 0.4), 
         GridGenerator::BaseElement.new(points: [
           Matrix.column_vector([60, 50]),
           Matrix.column_vector([80, 60]),
           Matrix.column_vector([60, 70]),
           Matrix.column_vector([40, 60])
-        ], colour: "#0000ff", opacity: 0.4), 
+        ], colour: "#5050ff", opacity: 0.4), 
         GridGenerator::BaseElement.new(points: [
           Matrix.column_vector([80, 60]),
           Matrix.column_vector([100, 70]),
           Matrix.column_vector([80, 80]),
           Matrix.column_vector([60, 70])
-        ], colour: "#0000ff", opacity: 0.4), 
+        ], colour: "#5050ff", opacity: 0.4), 
         GridGenerator::BaseElement.new(points: [
           Matrix.column_vector([100, 70]),
           Matrix.column_vector([120, 80]),
           Matrix.column_vector([100, 90]),
           Matrix.column_vector([80, 80])
-        ], colour: "#0000ff", opacity: 0.4), 
+        ], colour: "#5050ff", opacity: 0.4), 
         GridGenerator::BaseElement.new(points: [
           Matrix.column_vector([120, 80]),
           Matrix.column_vector([140, 90]),
           Matrix.column_vector([120, 100]),
           Matrix.column_vector([100, 90])
-        ], colour: "#0000ff", opacity: 0.4)
+        ], colour: "#5050ff", opacity: 0.4)
       ]
       assert_equal expected, grid.element_shapes
     end

@@ -8,7 +8,7 @@ describe GridGenerator::FaceParser do
       expected = [
         [ nil, nil, nil ],
         [ 
-          { colour: "#0000ff", opacity: 1 },
+          { colour: "#5050ff", opacity: 1 },
           { colour: "#ff0000", opacity: 0.4 },
           nil
         ],
