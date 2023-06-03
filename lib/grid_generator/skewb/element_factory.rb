@@ -25,13 +25,13 @@ module GridGenerator
             anchors[:top_middle],
             anchors[:left_middle]
           ]
-        when [0, 2] # top right corner
+        when [0, 1] # top right corner
           [
             anchors[:top_middle],
             anchors[:top_right_corner],
             anchors[:right_middle]
           ]
-        when [1, 1] # center
+        when [1, 0] # center
           [
             anchors[:top_middle],
             anchors[:right_middle],
@@ -44,7 +44,7 @@ module GridGenerator
             anchors[:bottom_middle],
             anchors[:bottom_left_corner]
           ]
-        when [2, 2] # bottom right corner
+        when [2, 1] # bottom right corner
           [
             anchors[:right_middle],
             anchors[:bottom_right_corner],
