@@ -69,7 +69,7 @@ module GridGenerator
         when [2, 2] # Right Edge 
           [
             GridGenerator::Svg::MoveCommand.new(points: [anchors[:top_right_corner]]),
-            GridGenerator::Svg::LineCommand.new(points: [anchors[:bottom_left_corner]]),
+            GridGenerator::Svg::LineCommand.new(points: [anchors[:bottom_right_corner]]),
             GridGenerator::Svg::LineCommand.new(points: [anchors[:center_right]]),
             GridGenerator::Svg::LineCommand.new(points: [anchors[:top_right_corner]]),
             GridGenerator::Svg::CloseCommand.new
