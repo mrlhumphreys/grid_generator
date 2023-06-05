@@ -18,6 +18,9 @@ require_relative 'grid_generator/curvy_copter/right_grid'
 require_relative 'grid_generator/dino_cube/top_grid'
 require_relative 'grid_generator/dino_cube/left_grid'
 require_relative 'grid_generator/dino_cube/right_grid'
+require_relative 'grid_generator/redi_cube/top_grid'
+require_relative 'grid_generator/redi_cube/left_grid'
+require_relative 'grid_generator/redi_cube/right_grid'
 require_relative 'grid_generator/rex_cube/top_grid'
 require_relative 'grid_generator/rex_cube/left_grid'
 require_relative 'grid_generator/rex_cube/right_grid'
@@ -87,6 +90,18 @@ module GridGenerator
 
   def self.dino_cube_right_grid(args)
     DinoCube::RightGrid.new(**args)
+  end
+
+  def self.redi_cube_top_grid(args)
+    RediCube::TopGrid.new(**args)
+  end
+
+  def self.redi_cube_left_grid(args)
+    RediCube::LeftGrid.new(**args)
+  end
+
+  def self.redi_cube_right_grid(args)
+    RediCube::RightGrid.new(**args)
   end
 
   def self.rex_cube_top_grid(args)
