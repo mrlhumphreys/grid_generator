@@ -54,7 +54,7 @@ module GridGenerator
             anchors[:top_right_corner_bottom_left],
             anchors[:top_right_corner_bottom_right],
             anchors[:bottom_right_corner_top_right],
-            anchors[:bottom_left_corner_top_left],
+            anchors[:bottom_right_corner_top_left],
             anchors[:center]
           ]
         when [2, 0] # bottom left corner 
@@ -67,17 +67,17 @@ module GridGenerator
         when [2, 1] # bottom edge 
           [
             anchors[:center],
+            anchors[:bottom_right_corner_top_left],
             anchors[:bottom_right_corner_bottom_left],
-            anchors[:bottom_right_corner_bottom_right],
             anchors[:bottom_left_corner_bottom_right],
-            anchors[:bottom_left_corner_bottom_left]
+            anchors[:bottom_left_corner_top_left]
           ]
         when [2, 2] # bottom right corner 
           [
             anchors[:bottom_right_corner_top_left],
             anchors[:bottom_right_corner_top_right],
+            anchors[:bottom_right_corner_bottom_right],
             anchors[:bottom_right_corner_bottom_left],
-            anchors[:bottom_right_corner_bottom_right]
           ]
         else
           []
