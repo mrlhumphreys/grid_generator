@@ -70,7 +70,7 @@ module GridGenerator
             anchors[:bottom_right_corner_top_left],
             anchors[:bottom_right_corner_bottom_left],
             anchors[:bottom_left_corner_bottom_right],
-            anchors[:bottom_left_corner_top_left]
+            anchors[:bottom_left_corner_top_right]
           ]
         when [2, 2] # bottom right corner 
           [

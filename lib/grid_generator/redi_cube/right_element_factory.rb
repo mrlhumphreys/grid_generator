@@ -7,8 +7,8 @@ module GridGenerator
         @anchors ||= {
           top_left_corner_top_left: Matrix.column_vector([0, 1.5*units]),
           top_left_corner_top_right: Matrix.column_vector([units, units]),
-          top_left_corner_bottom_left: Matrix.column_vector([units, 2.5*units ]),
-          top_left_corner_bottom_right: Matrix.column_vector([0, 2*units]),
+          top_left_corner_bottom_left: Matrix.column_vector([0, 2.5*units ]),
+          top_left_corner_bottom_right: Matrix.column_vector([units, 2*units]),
 
           top_right_corner_top_left: Matrix.column_vector([2*units, 0.5*units]),
           top_right_corner_top_right: Matrix.column_vector([3*units, 0]),
